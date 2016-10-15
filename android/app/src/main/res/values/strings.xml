@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Easy Guide</string>
+
+    <!-- Login Activity -->
+    <string name="login_textview_message">Login with your Google account to enjoy that\n<b>awesome</b> experience!</string>
+    <string name="login_textview_message_contdes">Login with your Google account to enjoy that awesome experience!</string>
+    <string name="login_button_login_google">Login with Google Account</string>
+    <string name="login_button_login_google_contdes">Login with Google Account</string>
+</resources>
