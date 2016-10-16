@@ -14,13 +14,14 @@ var auth = new function () {
                     .endAt($('#username').val())
                     .on('value', function (snapshot) {
                         var stat = false;
-                        $.each(snapshot.val(), function (index, values) {
-                            if (values.password == $('#password').val()) {
-                                auth.storeUser(index, values);
-                                stat = true;
-                                window.location = 'index.html';
-                            }
-                        });
+                        if (snapshot.val())
+                            $.each(snapshot.val(), function (index, values) {
+                                if (values.password == $('#password').val()) {
+                                    auth.storeUser(index, values);
+                                    stat = true;
+                                    window.location = 'index.html';
+                                }
+                            });
                         if (!stat) {
                             toastr.error('Usuário e/ou senha incorretos');
                         }
