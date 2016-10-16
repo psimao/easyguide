@@ -40,5 +40,5 @@ Thumbs.db
 ##################
 database.rules.json
 firebase.json
-firebase_config.json
+firebase_config.js
 .firebaserc

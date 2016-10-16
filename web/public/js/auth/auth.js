@@ -1,6 +1,6 @@
 var auth = new function () {
     this.unauth = function () {
-        localStorage['user'] = null;
+        localStorage.removeItem('user');
     };
 
 
