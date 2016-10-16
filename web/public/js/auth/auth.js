@@ -5,7 +5,6 @@ var auth = new function () {
 
 
     this.firebaseAuth = function () {
-        var stat = false;
         if (this.validateForm()) {
             firebase
                     .database()
@@ -14,18 +13,19 @@ var auth = new function () {
                     .startAt($('#username').val())
                     .endAt($('#username').val())
                     .on('value', function (snapshot) {
+                        var stat = false;
                         $.each(snapshot.val(), function (index, values) {
                             if (values.password == $('#password').val()) {
-                                stat = true;
                                 auth.storeUser(index, values);
+                                stat = true;
+                                window.location = 'index.html';
                             }
                         });
+                        if (!stat) {
+                            toastr.error('Usuário e/ou senha incorretos');
+                        }
                     });
-            if (!stat) {
-                alert('Usuário e/ou senha incorretos');
-            }
         }
-        return stat;
     };
 
     this.storeUser = function (hash, fields) {
@@ -55,7 +55,7 @@ var auth = new function () {
                     error += '- ' + errorMsg[i] + '<br />';
                 }
             }
-            alert(error);
+            toastr.error(error);
         }
 
         return stat;

@@ -4,8 +4,7 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script>
             $(document).ready(function () {
-                var auth = localStorage['user'] || null;
-                if (auth) {
+                if (localStorage['user']) {
                     window.location = "dashboard.html";
                 } else {
                     window.location = "login.html";
