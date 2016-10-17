@@ -18,8 +18,8 @@ var auth = new function () {
                             $.each(snapshot.val(), function (index, values) {
                                 if (values.password == $('#password').val()) {
                                     auth.storeUser(index, values);
-                                    stat = true;
                                     window.location = 'index.html';
+                                    stat = true;
                                 }
                             });
                         if (!stat) {
@@ -30,10 +30,7 @@ var auth = new function () {
     };
 
     this.storeUser = function (hash, fields) {
-        localStorage['user']['hash'] = hash;
-        localStorage['user']['name'] = fields.name;
-        localStorage['user']['email'] = fields.email;
-        localStorage['user']['picture'] = fields.picture;
+        localStorage.setItem('user',JSON.stringify(fields));
     };
 
 
