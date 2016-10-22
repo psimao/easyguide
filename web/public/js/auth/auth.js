@@ -18,7 +18,7 @@ var auth = new function () {
                             $.each(snapshot.val(), function (index, values) {
                                 if (values.password == $('#password').val()) {
                                     auth.storeUser(index, values);
-                                    window.location = 'index.html';
+                                    //window.location = 'index.html';
                                     stat = true;
                                 }
                             });
@@ -30,7 +30,17 @@ var auth = new function () {
     };
 
     this.storeUser = function (hash, fields) {
-        localStorage.setItem('user',JSON.stringify(fields));
+        localStorage.setItem('user', JSON.stringify(fields));
+
+        var db = firebase.database();
+        var ref = db.ref("log");
+        var utc = new Date().toJSON().slice(0, 10);
+        
+        ref.push().set({
+            description: "First Login!",
+            dt: utc,
+            hash_user: hash
+        });
     };
 
 
