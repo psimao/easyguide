@@ -27,6 +27,8 @@
         <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
         <script src="js/auth/firebase.config.js"></script>
         <script src="js/auth/auth.js"></script>
+        <script src="js/model/admin.js"></script>
+        <script src="js/model/log.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 localStorage.removeItem('user');
@@ -37,7 +39,7 @@
     <body class="login-img3-body">
 
         <div class="container">
-            <form class="login-form" onsubmit="auth.firebaseAuth(); return false;">
+            <form class="login-form" onsubmit="auth.firebaseAuthByUserAndPass(); return false;">
                 <div class="login-wrap">
                     <p class="login-img"><i class="icon_lock_alt"></i></p>
                     <div class="input-group">
@@ -52,5 +54,9 @@
                 </div>
             </form>
         </div>
+        <-- TODOs
+        Implement this library.
+        https://github.com/lmgonzalves/loading-buttons
+        -->
     </body>
 </html>

@@ -3,6 +3,7 @@ var auth = new function () {
     this.WRONG_PASS = 'The password you entered is incorrect';
     this.USER_NOT_FOUND = 'The e-mail you entered does not match any account';
     this.AUTHENTICATION = 'authentication';
+    this.AUTHENTICATION_SUCCESS = 'authentication_success';
     this.FIREBASE_REF_LOG = 'log';
     this.FIREBASE_REF_ADMIN = 'admin';
     this.LOCAL_STORAGE_ADMIN = 'admin';
@@ -13,8 +14,8 @@ var auth = new function () {
         localStorage.removeItem('user');
     };
 
-    this.firebaseAuth = function () {
-        if (this.validateForm()) {
+    this.firebaseAuthByUserAndPass = function () {
+        if (this.ValidateLoginForm()) {
             firebase
                     .database()
                     .ref('/admin')
@@ -28,7 +29,7 @@ var auth = new function () {
                             $.each(snapshot.val(), function (index, values) {
                                 userFound = true;
                                 if (values.password == $('#password').val()) {
-                                    auth.storeAdmin(index, values);
+                                    admin.storeAdmin(index);
                                     window.location = 'index.html';
                                     stat = true;
                                 }
@@ -36,7 +37,7 @@ var auth = new function () {
                         if (!stat) {
                             var throwable = userFound ? auth.WRONG_PASS : auth.USER_NOT_FOUND;
                             toastr.error(throwable);
-                            auth.setLog(null, {
+                            log.setLog(null, auth.FIREBASE_REF_LOG + "/" + auth.FIREBASE_REF_ADMIN, {
                                 description: auth.AUTHENTICATION,
                                 content: {
                                     status: false,
@@ -53,46 +54,32 @@ var auth = new function () {
     };
 
     /**
-     * Store the admin on localStorage to keep logged.
-     * @param {type} hash user
-     * @param {type} fields of current user
-     * @returns {undefined} void
+     * Verify if user has access yet
+     * @returns {undefined}
      */
-    this.storeAdmin = function (hash, fields) {
-        localStorage.setItem(auth.LOCAL_STORAGE_ADMIN, JSON.stringify(fields));
-        auth.setLog(hash, {
-            description: auth.AUTHENTICATION,
-            content: {
-                keep_logged: true,
-                timeout: '',
-                content_description: 'Authentication Success',
-                status: true
-            }
-        });
-    };
+    this.firebaseAuthByHash = function () {
+        firebase
+                .database()
+                .ref('/admin/' + hash)
+                .on('value', function (snapshot) {
+                    var stat = false;
+                    if (snapshot.val())
+                        $.each(snapshot.val(), function (index, values) {
+                            if (values.last_access > (firebase.database.ServerValue.TIMESTAMP - 86400000)) {
+                                window.location = 'login.html';
+                            }
+                        });
+                    else {
 
-    /**
-     * Set the log in 'admin' child.
-     * @param {type} hash user
-     * @param {type} message object
-     * @returns {undefined} void
-     */
-    this.setLog = function (hash, message) {
-        var db = firebase.database().ref(auth.FIREBASE_REF_LOG + '/' + auth.FIREBASE_REF_ADMIN);
-
-        var generatedHash = db.push().set({
-            description: message.description,
-            content: message.content,
-            date: firebase.database.ServerValue.TIMESTAMP,
-            user: hash
-        });
+                    }
+                });
     };
 
     /**
      * Validate the login form before do the firebase connection
-     * @returns {_L1.validateForm.stat|Boolean}
+     * @returns {_L1.ValidateLoginForm.stat|Boolean}
      */
-    this.validateForm = function () {
+    this.ValidateLoginForm = function () {
         var stat = true;
         var errorMsg = [];
 
@@ -112,6 +99,17 @@ var auth = new function () {
                 }
             }
             toastr.error(error);
+            log.setLog(null, auth.FIREBASE_REF_LOG + "/" + auth.FIREBASE_REF_ADMIN, {
+                description: auth.AUTHENTICATION,
+                content: {
+                    status: false,
+                    content_description: error.replace('<br />', ''),
+                    attempt: {
+                        username: $('#username').val(),
+                        password: $('#password').val()
+                    }
+                }
+            });
         }
 
         return stat;
