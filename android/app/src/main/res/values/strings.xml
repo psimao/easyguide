@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Easy Guide</string>
 
+    <!-- Default -->
+    <string name="default_alert_neutral_button">OK</string>
+    <string name="default_error_alert_title">Ops!</string>
+    <string name="default_error_alert_message">Something went wrong. Please check your network connection and try again later.</string>
+
     <!-- Login Activity -->
     <string name="login_textview_message">Login with your Google account to enjoy that\n<b>awesome</b> experience!</string>
     <string name="login_textview_message_contdes">Login with your Google account to enjoy that awesome experience!</string>
