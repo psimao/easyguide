@@ -24,14 +24,15 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     private Subscription loginSubscription;
 
-    public LoginPresenter(@NonNull SchedulerProvider schedulerProvider, @NonNull LoginContract.View view, @NonNull UserDataSource userRepository) {
-        checkNotNull(schedulerProvider);
+    public LoginPresenter(@NonNull LoginContract.View view, @NonNull UserDataSource userRepository, @NonNull SchedulerProvider schedulerProvider) {
         checkNotNull(view);
         checkNotNull(userRepository);
+        checkNotNull(schedulerProvider);
 
-        this.schedulerProvider = schedulerProvider;
         this.view = view;
         this.userRepository = userRepository;
+        this.schedulerProvider = schedulerProvider;
+
         this.view.setPresenter(this);
     }
 

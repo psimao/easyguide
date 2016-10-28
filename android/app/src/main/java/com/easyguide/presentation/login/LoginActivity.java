@@ -43,9 +43,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         new LoginPresenter(
-                Injection.provideSchedulerProvider(),
                 this,
-                Injection.provideUserRepository()
+                Injection.provideUserRepository(),
+                Injection.provideSchedulerProvider()
         );
         ButterKnife.bind(this);
     }
