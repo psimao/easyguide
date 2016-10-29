@@ -1,5 +1,6 @@
 package com.easyguide.presentation.introduction;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,16 +12,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.easyguide.BaseActivity;
+import com.easyguide.Injection;
 import com.easyguide.R;
 import com.easyguide.presentation.login.LoginActivity;
 import com.easyguide.ui.adapter.IntroductionAdapter;
+import com.easyguide.util.schedulers.SchedulerProvider;
 
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class IntroductionActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class IntroductionActivity extends BaseActivity implements IntroductionContract.View, ViewPager.OnPageChangeListener {
+
+    private IntroductionContract.Presenter presenter;
 
     @BindView(R.id.viewpager_intro)
     ViewPager viewPagerIntro;
@@ -32,6 +37,8 @@ public class IntroductionActivity extends BaseActivity implements ViewPager.OnPa
     ImageView imageViewIcon1;
     @BindView(R.id.imageview_icon_2)
     ImageView imageViewIcon2;
+
+    private ProgressDialog progressDialog;
 
     private int[] icons = new int[]{
             R.drawable.ic_introduction_1,
@@ -52,6 +59,55 @@ public class IntroductionActivity extends BaseActivity implements ViewPager.OnPa
         setContentView(R.layout.activity_introduction);
         ButterKnife.bind(this);
         setupViewPager();
+
+        new IntroductionPresenter(this, Injection.providePreferencesRepository(this), SchedulerProvider.getInstance());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.subscribe();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        presenter.unsubscribe();
+    }
+
+    @OnClick(R.id.button_start_exploring)
+    public void buttonStartExploringOnClick() {
+        presenter.setupFirstAccess();
+    }
+
+    @Override
+    public void showDefaultProgress() {
+        progressDialog = ProgressDialog.show(
+                this,
+                getString(R.string.introduction_progress_default_title),
+                getString(R.string.default_progress_message),
+                true,
+                true
+        );
+    }
+
+    @Override
+    public void dismissProgress() {
+        if(progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void startLoginActivity() {
+        finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void setPresenter(IntroductionContract.Presenter presenter) {
+        this.presenter = presenter;
     }
 
     @Override
@@ -85,13 +141,6 @@ public class IntroductionActivity extends BaseActivity implements ViewPager.OnPa
                 fadeinImage.startAnimation(imageViewAnimation(fadeinImage, R.anim.fade_in));
             }
         }
-    }
-
-    @OnClick(R.id.button_start_exploring)
-    public void buttonStartExploringOnClick() {
-        finish();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
     }
 
     private void setupViewPager() {

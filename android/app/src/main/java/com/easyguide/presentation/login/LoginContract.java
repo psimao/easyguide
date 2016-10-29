@@ -1,5 +1,6 @@
 package com.easyguide.presentation.login;
 
+import com.easyguide.data.entity.UserEntity;
 import com.easyguide.presentation.BasePresenter;
 import com.easyguide.presentation.BaseView;
 
@@ -17,6 +18,7 @@ public class LoginContract {
     }
 
     interface Presenter extends BasePresenter {
-        void loginWithGoogleAccount();
+        void checkLoggedUser();
+        void login(UserEntity user);
     }
 }

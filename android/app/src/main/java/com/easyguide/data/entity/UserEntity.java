@@ -6,6 +6,7 @@ public class UserEntity {
     private String name;
     private String email;
     private String photoUrl;
+    private String idToken;
 
     public String getName() {
         return name;
@@ -37,5 +38,13 @@ public class UserEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getIdToken() {
+        return idToken;
+    }
+
+    public void setIdToken(String idToken) {
+        this.idToken = idToken;
     }
 }

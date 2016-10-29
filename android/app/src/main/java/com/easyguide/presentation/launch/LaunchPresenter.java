@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import com.easyguide.data.entity.UserEntity;
 import com.easyguide.data.repository.preferences.PreferencesDataSource;
 import com.easyguide.data.repository.user.UserDataSource;
-import com.easyguide.util.schedulers.SchedulerProvider;
+import com.easyguide.util.schedulers.BaseSchedulerProvider;
 
 import rx.Subscription;
 import rx.functions.Action1;
@@ -20,12 +20,12 @@ public class LaunchPresenter implements LaunchContract.Presenter {
     private final PreferencesDataSource preferencesRepository;
     private final UserDataSource userRepository;
 
-    private final SchedulerProvider schedulerProvider;
+    private final BaseSchedulerProvider schedulerProvider;
 
     private final CompositeSubscription subscriptions;
 
     public LaunchPresenter(@NonNull LaunchContract.View view, @NonNull PreferencesDataSource preferencesRepository,
-                           @NonNull UserDataSource userRepository, @NonNull SchedulerProvider schedulerProvider) {
+                           @NonNull UserDataSource userRepository, @NonNull BaseSchedulerProvider schedulerProvider) {
         checkNotNull(view);
         checkNotNull(preferencesRepository);
         checkNotNull(userRepository);

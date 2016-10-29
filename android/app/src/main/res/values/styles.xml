@@ -12,4 +12,6 @@
         <item name="android:background">@drawable/background_button_login</item>
     </style>
 
+    <style name="AppTheme.ToolBarStyle" parent="ThemeOverlay.AppCompat.Dark" />
+
 </resources>

@@ -6,4 +6,6 @@
 
     <color name="ripple_default">#44000000</color>
     <color name="background_button_login">#FFF</color>
+
+    <color name="toolbar_text_color">#FFF</color>
 </resources>

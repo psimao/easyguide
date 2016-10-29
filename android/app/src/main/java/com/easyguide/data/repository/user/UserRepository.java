@@ -29,4 +29,9 @@ public class UserRepository implements UserDataSource {
     public Observable<UserEntity> getUser() {
         return userRemoteDataSource.getUser();
     }
+
+    @Override
+    public Observable<Boolean> persistUser(@NonNull UserEntity user) {
+        return userRemoteDataSource.persistUser(user);
+    }
 }

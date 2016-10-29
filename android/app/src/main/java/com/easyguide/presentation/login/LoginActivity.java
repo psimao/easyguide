@@ -4,11 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.widget.Toast;
 
 import com.easyguide.BaseActivity;
 import com.easyguide.Injection;
 import com.easyguide.R;
+import com.easyguide.data.entity.UserEntity;
+import com.easyguide.data.entity.mapper.UserEntityMapper;
 import com.easyguide.presentation.home.HomeActivity;
 import com.easyguide.util.GoogleAuthenticationProvider;
 import com.google.android.gms.auth.api.Auth;
@@ -16,12 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -68,25 +63,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
+                UserEntity userEntity = UserEntityMapper.transform(account);
+                presenter.login(userEntity);
             }
         }
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        FirebaseAuth.getInstance().signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            startHomeActivity();
-                        }
-                    }
-                });
     }
 
     @Override
@@ -94,7 +74,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
         progressDialog = ProgressDialog.show(
                 this,
                 getString(R.string.login_progress_default_title),
-                getString(R.string.login_progress_default_message),
+                getString(R.string.default_progress_message),
                 true,
                 true,
                 null);
@@ -115,7 +95,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
     @Override
     public void requestLoginWithGoogleAccount() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(
-                GoogleAuthenticationProvider.provideGoogleApiClient(this, this, getString(R.string.default_web_client_id))
+                GoogleAuthenticationProvider.provideGoogleApiClient(
+                        this,
+                        this,
+                        getString(R.string.default_web_client_id)
+                )
         );
         startActivityForResult(signInIntent, RESULT_GOOGLE_ACCOUNT_LOGIN);
     }
@@ -134,11 +118,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        showLoginErrorMessage(connectionResult.getErrorMessage());
     }
 
     @OnClick(R.id.button_login_google)
     public void loginWithGoogleButtonOnClick() {
-        this.presenter.loginWithGoogleAccount();
+        this.requestLoginWithGoogleAccount();
     }
 }

@@ -4,17 +4,18 @@ import android.support.annotation.NonNull;
 
 import com.easyguide.data.entity.UserEntity;
 import com.easyguide.data.repository.user.UserDataSource;
-import com.easyguide.util.schedulers.SchedulerProvider;
+import com.easyguide.util.schedulers.BaseSchedulerProvider;
 
 import rx.Subscription;
 import rx.functions.Action1;
+import rx.subscriptions.CompositeSubscription;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LoginPresenter implements LoginContract.Presenter {
 
     @NonNull
-    private final SchedulerProvider schedulerProvider;
+    private final BaseSchedulerProvider schedulerProvider;
 
     @NonNull
     private final LoginContract.View view;
@@ -22,9 +23,9 @@ public class LoginPresenter implements LoginContract.Presenter {
     @NonNull
     private final UserDataSource userRepository;
 
-    private Subscription loginSubscription;
+    private final CompositeSubscription subscriptions;
 
-    public LoginPresenter(@NonNull LoginContract.View view, @NonNull UserDataSource userRepository, @NonNull SchedulerProvider schedulerProvider) {
+    public LoginPresenter(@NonNull LoginContract.View view, @NonNull UserDataSource userRepository, @NonNull BaseSchedulerProvider schedulerProvider) {
         checkNotNull(view);
         checkNotNull(userRepository);
         checkNotNull(schedulerProvider);
@@ -33,31 +34,41 @@ public class LoginPresenter implements LoginContract.Presenter {
         this.userRepository = userRepository;
         this.schedulerProvider = schedulerProvider;
 
+        this.subscriptions = new CompositeSubscription();
+
         this.view.setPresenter(this);
     }
 
     @Override
     public void subscribe() {
-
+        checkLoggedUser();
     }
 
     @Override
     public void unsubscribe() {
-        if(loginSubscription != null && !loginSubscription.isUnsubscribed()) {
-            loginSubscription.unsubscribe();
-        }
+        subscriptions.clear();
     }
 
     @Override
-    public void loginWithGoogleAccount() {
-        if(loginSubscription == null || loginSubscription.isUnsubscribed()) {
-            view.showDefaultProgress();
-            loginSubscription =
-                    userRepository.getUser()
-                            .subscribeOn(schedulerProvider.computation())
-                            .observeOn(schedulerProvider.ui())
-                            .subscribe(getUserOnNextAction, getUserOnErrorAction);
-        }
+    public void checkLoggedUser() {
+        view.showDefaultProgress();
+        Subscription loginSubscription =
+                userRepository.getUser()
+                        .subscribeOn(schedulerProvider.computation())
+                        .observeOn(schedulerProvider.ui())
+                        .subscribe(getUserOnNextAction, defaultOnErrorAction);
+        subscriptions.add(loginSubscription);
+    }
+
+    @Override
+    public void login(UserEntity user) {
+        view.showDefaultProgress();
+        Subscription subscription =
+                userRepository.persistUser(user)
+                        .subscribeOn(schedulerProvider.computation())
+                        .observeOn(schedulerProvider.ui())
+                        .subscribe(loginOnNextAction, defaultOnErrorAction);
+        subscriptions.add(subscription);
     }
 
     private Action1<UserEntity> getUserOnNextAction = new Action1<UserEntity>() {
@@ -66,14 +77,21 @@ public class LoginPresenter implements LoginContract.Presenter {
             view.dismissProgress();
             if (userEntity != null) {
                 view.startHomeActivity();
-            } else {
-                view.requestLoginWithGoogleAccount();
             }
-            loginSubscription.unsubscribe();
         }
     };
 
-    private Action1<Throwable> getUserOnErrorAction = new Action1<Throwable>() {
+    private Action1<Boolean> loginOnNextAction = new Action1<Boolean>() {
+        @Override
+        public void call(Boolean result) {
+            view.dismissProgress();
+            if (result) {
+                view.startHomeActivity();
+            }
+        }
+    };
+
+    private Action1<Throwable> defaultOnErrorAction = new Action1<Throwable>() {
         @Override
         public void call(Throwable throwable) {
             view.showLoginErrorMessage(throwable.getMessage());
