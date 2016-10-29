@@ -2,6 +2,7 @@ package com.easyguide.presentation.launch;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.easyguide.BaseActivity;
 import com.easyguide.Injection;
@@ -12,7 +13,11 @@ import com.easyguide.presentation.login.LoginActivity;
 
 public class LaunchActivity extends BaseActivity implements LaunchContract.View {
 
+    private static final long DELAY_MILLISECONDS = 1000;
+
     private LaunchContract.Presenter presenter;
+
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +34,13 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View 
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.subscribe();
+        handler.postDelayed(delayedRunnable, DELAY_MILLISECONDS);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        handler.removeCallbacks(delayedRunnable);
         presenter.unsubscribe();
     }
 
@@ -60,6 +66,15 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View 
 
     private void baseStartActivity(Class clazz) {
         finish();
-        startActivity(new Intent(this, clazz));
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
     }
+
+    private Runnable delayedRunnable = new Runnable() {
+        @Override
+        public void run() {
+            presenter.subscribe();
+        }
+    };
 }

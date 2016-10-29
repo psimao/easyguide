@@ -38,6 +38,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void subscribe() {
+
     }
 
     @Override
@@ -50,6 +51,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void loginWithGoogleAccount() {
         if(loginSubscription == null || loginSubscription.isUnsubscribed()) {
+            view.showDefaultProgress();
             loginSubscription =
                     userRepository.getUser()
                             .subscribeOn(schedulerProvider.computation())
@@ -61,6 +63,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     private Action1<UserEntity> getUserOnNextAction = new Action1<UserEntity>() {
         @Override
         public void call(UserEntity userEntity) {
+            view.dismissProgress();
             if (userEntity != null) {
                 view.startHomeActivity();
             } else {

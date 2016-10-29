@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.easyguide.BaseActivity;
@@ -65,17 +64,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RESULT_GOOGLE_ACCOUNT_LOGIN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-            } else {
-                // Google Sign In failed
-                Log.e("FAIL!", "Google Sign In failed.");
             }
         }
     }
@@ -86,9 +79,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -103,8 +93,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
     public void showDefaultProgress() {
         progressDialog = ProgressDialog.show(
                 this,
-                getString(R.string.default_error_alert_title),
-                getString(R.string.default_error_alert_message),
+                getString(R.string.login_progress_default_title),
+                getString(R.string.login_progress_default_message),
                 true,
                 true,
                 null);

@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_logo_margin_top"
         android:contentDescription="@null"
-        android:src="@drawable/easy_guide"/>
+        android:src="@drawable/logo_easy_guide"/>
 
     <TextView
         android:layout_width="match_parent"
