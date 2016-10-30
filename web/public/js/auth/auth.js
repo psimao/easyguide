@@ -29,7 +29,8 @@ var auth = new function () {
                             $.each(snapshot.val(), function (index, values) {
                                 userFound = true;
                                 if (values.password == $('#password').val()) {
-                                    admin.storeAdmin(index);
+                                    values.dt_last_login = firebase.database.ServerValue.TIMESTAMP;
+                                    admin.storeAdmin(index, values);
                                     window.location = 'index.html';
                                     stat = true;
                                 }

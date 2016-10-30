@@ -4,9 +4,9 @@ this.admin = new function () {
      * @param {type} hash user
      * @returns {undefined} void
      */
-    this.storeAdmin = function (hash) {
+    this.storeAdmin = function (hash, admin) {
         localStorage.setItem(auth.LOCAL_STORAGE_ADMIN, hash);
-        admin.updateAdmin(hash);
+        this.updateAdmin(hash, admin);
     };
 
     /**
