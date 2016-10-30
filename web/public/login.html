@@ -9,18 +9,13 @@
         <link rel="shortcut icon" href="img/favicon.png">
 
         <title>Easy Guide</title>
-
-        <!-- Bootstrap CSS -->    
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!-- bootstrap theme -->
-        <link href="css/bootstrap-theme.css" rel="stylesheet">
         <!--external css-->
         <!-- font icon -->
         <link href="css/elegant-icons-style.css" rel="stylesheet" />
         <link href="css/font-awesome.css" rel="stylesheet" />
         <!-- Custom styles -->
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/style-responsive.css" rel="stylesheet" />
+        <link href="css/module/login.css" rel="stylesheet" type="text/css"/>
+
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
@@ -35,9 +30,25 @@
             });
         </script>
     </head>
+    <body>
 
-    <body class="login-img3-body">
-
+        <div>
+            <section class="login" id="login">
+                <header>
+                    <h2></h2>
+                    <img src="img/application/easy_guide.png">
+                    <h4></h4>
+                </header>
+                <form class="login-form" onsubmit="auth.firebaseAuthByUserAndPass(); return false;">
+                    <input id="username" type="text" class="login-input" placeholder="User" required autofocus/>
+                    <input id="password" type="password" class="login-input" placeholder="Password" required/>
+                    <div class="submit-container">
+                        <button type="submit" class="login-button">SIGN IN</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+<!--
         <div class="container">
             <form class="login-form" onsubmit="auth.firebaseAuthByUserAndPass(); return false;">
                 <div class="login-wrap">
