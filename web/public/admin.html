@@ -86,7 +86,7 @@
                     </ul>
                     <!-- notificatoin dropdown end-->
                 </div>
-            </header>      
+            </header>
             <!--header end-->
 
             <!--sidebar start-->
@@ -96,26 +96,26 @@
                     <ul class="sidebar-menu">                
                         <li >
                             <a href="index.html">
-                                <i class="icon_house_alt"></i>
+                                <i><img src="img/icons/ic_home_white_24px.svg"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="active">
                             <a href="admin.html">
-                                <i class="icon_genius"></i>
+                                <i><img src="img/icons/ic_person_white_24px.svg"></i>
                                 <span>Admin</span>
                             </a>
                         </li>
                         <li>                     
                             <a href="beacons.html">
-                                <i class="icon_piechart"></i>
+                                <i><img src="img/icons/ic_settings_bluetooth_white_24px.svg"></i>
                                 <span>Beacon</span>
 
                             </a>
                         </li>
                         <li>                     
                             <a href="log.html">
-                                <i class="icon_piechart"></i>
+                                <i><img src="img/icons/ic_view_list_white_24px.svg"></i>
                                 <span>Log</span>
                             </a>
                         </li>
@@ -134,90 +134,107 @@
                             <h3 class="page-header"><i class="fa fa-laptop"></i> Admin</h3>
                         </div>
                     </div>
-                    <div class="row" ng-controller="adminCtrl" id="adminCtrl">
-                        <div class="col-md-6">
-                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <span><center>Name</center></span>
-                                        </th>
-                                        <th>
-                                            <span><center>Email</center></span>
-                                        </th>
-                                        <th>
-                                            <span><center>Date Created</center></span>
-                                        </th>
-                                        <th>
-                                            <span><center>Profile Picture</center></span>
-                                        </th>
-                                        <th>
-                                            <span><center>Action</center></span>
-                                        </th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr grid-item ng-repeat="admin in admins">
-                                        <td>
-                                            <center>
-                                                <span ng-bind="admin.name"></span>
-                                            </center>
-                                        </td>
-                                        <td ng-bind="admin.email"></td>
-                                        <td ng-bind="admin.dt_created | date:'MM/dd/yyyy HH:mm:ss'"></td>
-                                        <td>
-                                            <img height="30px" width="30px" ng-src="{{admin.image_profile}}">
-                                        </td>
-                                        <td>
-                                            <span>
-                                                <md-button class="md-fab md-mini md-primary">
-                                                    <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadAdminOnForm(admin);"></md-icon>
-                                                </md-button>
-                                                <md-button class="md-fab md-mini">
-                                                    <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delete(admin.key);"></md-icon>
-                                                </md-button>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div ng-controller="adminCtrl" id="adminCtrl">
+                        <div>
+                            <div class="row col-md-12">
+                                <div class="mdl-data-table mdl-shadow--4dp" layout="column" layout-padding ng-cloak>
+                                    <md-content class="md-no-momentum">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <md-input-container class="md-block">
+                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+                                                    <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+                                                </md-input-container>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <md-input-container class="md-block">
+                                                    <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                                    <input ng-model="user.name" type="text" placeholder="Name" ng-required="true">
+                                                </md-input-container>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <md-input-container class="md-block">
+                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <input ng-model="user.password" type="password" placeholder="Password" ng-required="true">
+                                                </md-input-container>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="file_input_div">
+                                                    <div class="file_input">
+                                                        <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+                                                            <i class="material-icons">file_upload</i>
+                                                            <input class="none" type="file" id="file" accept="image/*"/>
+                                                        </label>
+                                                    </div>
+                                                    <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+                                                        <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" ng-model="user.image_profile" />
+                                                        <label class="mdl-textfield__label" for="file_input_text"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <md-button ng-click="save();" class="md-raised md-primary md-block">Save</md-button>
+                                    </md-content>
+                                </div>
                         </div>
-                        <div class="col-md-6">
-                            <div layout="column" layout-padding ng-cloak>
-                                <md-content class="md-no-momentum">
-                                    <md-input-container class="md-block">
-                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
-                                        <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
-                                    </md-input-container>
+                        <div class="row col-md-12">
+                            <center>
+                                <div class="table-responsive">
+                                    <table class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12" style="margin-top: 5px;">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-2">
+                                                    <span><center>Name</center></span>
+                                                </th>
+                                                <th class="col-md-2">
+                                                    <span><center>Email</center></span>
+                                                </th>
+                                                <th class="col-md-2">
+                                                    <span><center>Date Created</center></span>
+                                                </th>
+                                                <th class="col-md-3">
+                                                    <span><center>Profile Picture</center></span>
+                                                </th>
+                                                <th class="col-md-3">
+                                                    <span><center>Action</center></span>
+                                                </th>
+                                            </tr>
+                                        </thead>
 
-                                    <md-input-container class="md-block">
-                                        <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                        <input ng-model="user.name" type="text" placeholder="Name" ng-required="true">
-                                    </md-input-container>
-
-                                    <md-input-container class="md-block">
-                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
-                                        <input ng-model="user.password" type="password" placeholder="Password" ng-required="true">
-                                    </md-input-container>
-                                    <div class="file_input_div">
-                                        <div class="file_input">
-                                            <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-                                                <i class="material-icons">file_upload</i>
-                                                <input class="none" type="file" id="file" accept="image/*"/>
-                                            </label>
-                                        </div>
-                                        <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-                                            <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" ng-model="user.image_profile" />
-                                            <label class="mdl-textfield__label" for="file_input_text"></label>
-                                        </div>
-                                    </div>
-
-                                    <md-button ng-click="save();" class="md-raised md-primary md-block">Save</md-button>
-                                </md-content>
-                            </div>
+                                        <tbody>
+                                            <tr grid-item ng-repeat="admin in admins">
+                                                <td class="col-md-2">
+                                                    <center>
+                                                        <span ng-bind="admin.name"></span>
+                                                    </center>
+                                                </td>
+                                                <td class="col-md-2"><center ng-bind="admin.email"></center></td>
+                                                <td class="col-md-2"><center ng-bind="admin.dt_created | date:'MM / dd / yyyy HH:mm:ss'"></center></td>
+                                                <td class="col-md-3">
+                                                    <center>
+                                                        <img height="30px" width="30px" ng-src="{{admin.image_profile}}">
+                                                    </center>
+                                                </td>
+                                                <td class="col-md-3">
+                                                    <span>
+                                                        <center>
+                                                            <md-button class="md-fab md-mini md-primary">
+                                                                <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadAdminOnForm(admin);"></md-icon>
+                                                            </md-button>
+                                                            <md-button class="md-fab md-mini md-warn">
+                                                                <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delete(admin.key);"></md-icon>
+                                                            </md-button>
+                                                        </center>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </center>
                         </div>
                     </div>
+
                 </section>
             </section>
             <!--main content end-->
@@ -236,7 +253,7 @@
         <!-- jQuery full calendar -->
         <!--custome script for all page-->
         <script src="js/components/scripts.js"></script>
-        
+
         <link rel="manifest" href="assets/favicons/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">

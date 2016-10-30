@@ -6,6 +6,7 @@ var auth = new function () {
     this.AUTHENTICATION_SUCCESS = 'authentication_success';
     this.FIREBASE_REF_LOG = 'log';
     this.FIREBASE_REF_ADMIN = 'admin';
+    this.FIREBASE_REF_WEB = 'web';
     this.LOCAL_STORAGE_ADMIN = 'admin';
     this.INCORRECT_EMAIL = 'Username must have more than 2 characters!';
     this.INCORRECT_PASS = 'Password must have more than 2 characters!';
@@ -38,7 +39,7 @@ var auth = new function () {
                         if (!stat) {
                             var throwable = userFound ? auth.WRONG_PASS : auth.USER_NOT_FOUND;
                             toastr.error(throwable);
-                            log.setLog(null, auth.FIREBASE_REF_LOG + "/" + auth.FIREBASE_REF_ADMIN, {
+                            log.setLog(null, auth.FIREBASE_REF_LOG + "/" + auth.FIREBASE_REF_WEB, {
                                 description: auth.AUTHENTICATION,
                                 content: {
                                     status: false,
@@ -102,7 +103,7 @@ var auth = new function () {
                 }
             }
             toastr.error(error);
-            log.setLog(null, auth.FIREBASE_REF_LOG + "/" + auth.FIREBASE_REF_ADMIN, {
+            log.setLog(null, auth.FIREBASE_REF_LOG + "/" + auth.FIREBASE_REF_WEB, {
                 description: auth.AUTHENTICATION,
                 content: {
                     status: false,

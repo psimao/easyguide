@@ -2,7 +2,7 @@ $(document).ready(function () {
     comom.fillHeader();
 });
 
-this.comom = new function () {
+var comom = new function () {
 
     /*
      * The timeout is equivalent to 1 day;
@@ -22,7 +22,7 @@ this.comom = new function () {
                     if (snapshot.val()) {
                         document.getElementById('image_profile').src = snapshot.val().image_profile;
                         document.getElementById('username').innerHTML = snapshot.val().name;
-                        this.checkUserLogged(snapshot.val());
+                        comom.checkUserLogged(snapshot.val());
                     } else {
                         window.location = 'login.html';
                     }
