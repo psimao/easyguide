@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+        <meta name="author" content="GeeksLabs">
+        <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+
+        <title>Easy Guide</title>
+
+        <!-- Application-->
+        <link href="css/module/admin.css" rel="stylesheet" />
+        <!-- Bootstrap CSS -->    
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <!-- bootstrap theme -->
+        <link href="../css/bootstrap-theme.css" rel="stylesheet">
+        <!-- font icon -->
+        <link href="../css/elegant-icons-style.css" rel="stylesheet" />
+        <link href="../css/font-awesome.min.css" rel="stylesheet" />
+        <!-- Custom styles -->
+        <link href="../css/widgets.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/style-responsive.css" rel="stylesheet" />
+        <link href="../css/xcharts.min.css" rel=" stylesheet">	
+        <link href="../css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+        <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.1-master-a687bfc/angular-material.css">
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-blue.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+        <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
+        <script src="http://angular-data-grid.github.io/dist/pagination.js"></script>
+        <script src="http://angular-data-grid.github.io/dist/dataGrid.js"></script>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue_grey-red.min.css" />
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="js/auth/firebase.config.js"></script>
+        <script src="js/model/admin.js"></script>                    
+        <script src="js/angular/admin.js"></script>
+        <script src="js/auth/comom.js"></script>
+        <script src="js/auth/auth.js" type="text/javascript"></script>
+    </head>
+
+    <body ng-app="EasyGuide">
+        <!-- container section start -->
+        <section id="container" class="">
+
+
+            <header class="header dark-bg">
+                <div class="toggle-nav">
+                    <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+                </div>
+
+                <!--logo start-->
+                <a href="index.html" class="logo"><img src="img/application/easy_guide_mini_dark_theme.png" height="30px"></a>
+                <!--logo end-->
+                <div class="top-nav notification-row">                
+                    <!-- notificatoin dropdown start-->
+                    <ul class="nav pull-right top-menu">
+                        <!-- user login dropdown start-->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="profile-ava"><img src="img/application/placeholder/profile_picture.png" height="30px" width="30px" id="image_profile"></span>
+                                <span class="username" id="username"></span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                <div class="log-arrow-up"></div>
+                                <li>
+                                    <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- user login dropdown end -->
+                    </ul>
+                    <!-- notificatoin dropdown end-->
+                </div>
+            </header>      
+            <!--header end-->
+
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar"  class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu">                
+                        <li >
+                            <a href="index.html">
+                                <i class="icon_house_alt"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin.html">
+                                <i class="icon_genius"></i>
+                                <span>Admin</span>
+                            </a>
+                        </li>
+                        <li class="active">                     
+                            <a href="beacons.html">
+                                <i class="icon_piechart"></i>
+                                <span>Beacon</span>
+
+                            </a>
+                        </li>
+                        <li>                     
+                            <a href="log.html">
+                                <i class="icon_piechart"></i>
+                                <span>Log</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+
+            <!--main content start-->
+            <section id="main-content" >
+                <section class="wrapper">            
+                    <!--overview start-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="page-header"><i class="fa fa-laptop"></i> Admin</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" ng-controller="listCtrl" id="listCtrl">
+                                <thead>
+                                    <tr>
+                                        <th sortable="admin.name">
+                                            <span>Name</span>
+                                        </th>
+                                        <th sortable="admin.email">
+                                            <span>Email</span>
+                                        </th>
+                                        <th sortable="admin.dt_created">
+                                            <span>Date Created</span>
+                                        </th>
+                                        <th sortable='admin.dt_altered'>
+                                            <span>Date Altered</span>
+                                        </th>
+                                        <th>
+                                            <span>Profile Picture</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr grid-item ng-repeat="admin in admins">
+                                        <td ng-bind="admin.name"></td>
+                                        <td ng-bind="admin.email"></td>
+                                        <td ng-bind="admin.dt_created | date:'MM / dd / yyyy HH:mm:ss'"></td>
+                                        <td ng-bind="admin.dt_altered | date:'MM / dd / yyyy HH:mm:ss'"></td>
+                                        <td>
+                                            <img height="30px" width="30px" ng-src="{{admin.image_profile}}">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div ng-controller="inputCtrl" layout="column" layout-padding ng-cloak id="inputCtrl">
+                                <md-content class="md-no-momentum">
+                                    <md-input-container class="md-block">
+                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+                                        <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block">
+                                        <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                        <input ng-model="user.name" type="text" placeholder="Name" ng-required="true">
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block">
+                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                        <input ng-model="user.password" type="password" placeholder="Password" ng-required="true">
+                                    </md-input-container>
+                                    <div class="file_input_div">
+                                        <div class="file_input">
+                                            <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+                                                <i class="material-icons">file_upload</i>
+                                                <input class="none" type="file" id="file" />
+                                            </label>
+                                        </div>
+                                        <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+                                            <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" ng-model="user.image_profile" />
+                                            <label class="mdl-textfield__label" for="file_input_text"></label>
+                                        </div>
+                                    </div>
+
+                                    <md-button ng-click="saveAction();" class="md-raised md-primary md-block">Save</md-button>
+                                </md-content>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <!--main content end-->
+        </section>
+        <!-- container section start -->
+        <!-- javascripts -->
+        <script src="js/components/jquery.js"></script>
+        <script src="js/components/jquery-ui-1.10.4.min.js"></script>
+        <script src="js/components/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/components/jquery-ui-1.9.2.custom.min.js"></script>
+        <!-- bootstrap -->
+        <script src="js/components/bootstrap.min.js"></script>
+        <!-- nice scroll -->
+        <script src="js/components/jquery.scrollTo.min.js"></script>
+        <script src="js/components/jquery.nicescroll.js" type="text/javascript"></script>
+        <!-- jQuery full calendar -->
+        <!--custome script for all page-->
+        <script src="js/components/scripts.js"></script>
+        <link rel="manifest" href="assets/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
+        <link rel="shortcut icon" type="image/png" href="assets/favicons/favicon.ico"/>
+        <meta name="theme-color" content="#ffffff">
+
+    </body>
+</html>

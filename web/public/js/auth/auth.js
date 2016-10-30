@@ -67,10 +67,12 @@ var auth = new function () {
                         $.each(snapshot.val(), function (index, values) {
                             if (values.last_access > (firebase.database.ServerValue.TIMESTAMP - 86400000)) {
                                 window.location = 'login.html';
+                            } else {
+                                window.location = 'dashboard.html';
                             }
                         });
                     else {
-
+                        window.location = 'login.html';
                     }
                 });
     };

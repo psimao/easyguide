@@ -95,8 +95,8 @@ table tr th { color: #688a7e;}
 }
 
 .login-form {
-    max-width: 350px;
-    margin: 200px auto 0;
+    max-width: 400px;
+    margin: 100px auto 0;
     background: #d5d7de;    
 }
 .login-img-body .login-form{

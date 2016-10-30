@@ -14,13 +14,25 @@ this.admin = new function () {
      * @param {type} hash
      * @returns {undefined}
      */
-    this.updateAdmin = function (hash) {
+    this.updateAdmin = function (hash, admin) {
         var db = firebase.database().ref(auth.FIREBASE_REF_ADMIN + "/" + hash);
+        admin.dt_changed = firebase.database.ServerValue.TIMESTAMP;
+        return db.update(admin);
+    };
 
-        // Update last access.
-        db.update({
-            last_access: firebase.database.ServerValue.TIMESTAMP
-        });
+    /**
+     * Add the admin in firebase
+     * @param {type} admin
+     * @returns hash generated
+     */
+    this.addAdmin = function (admin) {
+        var db = firebase.database().ref(auth.FIREBASE_REF_ADMIN);
+        admin.dt_created = firebase.database.ServerValue.TIMESTAMP;
+        return db.push(admin);
+    };
+
+    this.delAdmin = function (key) {
+        var db = firebase.database().ref(auth.FIREBASE_REF_ADMIN);
+        return db.child(key).remove();
     };
 };
-
