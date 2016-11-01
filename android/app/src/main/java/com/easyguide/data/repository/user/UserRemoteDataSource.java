@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 import com.easyguide.data.entity.UserEntity;
 import com.easyguide.data.entity.mapper.UserEntityMapper;
 import com.easyguide.util.rxfirebase.RxFirebaseHandler;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,9 +25,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class UserRemoteDataSource implements UserDataSource {
 
     private final FirebaseAuth firebaseAuth;
+    private final GoogleApiClient googleApiClient;
 
-    public UserRemoteDataSource(@NonNull FirebaseAuth firebaseAuth) {
+    public UserRemoteDataSource(@NonNull FirebaseAuth firebaseAuth, @NonNull GoogleApiClient googleApiClient) {
         this.firebaseAuth = firebaseAuth;
+        this.googleApiClient = googleApiClient;
     }
 
     @Override
@@ -55,6 +60,20 @@ public class UserRemoteDataSource implements UserDataSource {
             @Override
             public Boolean call(AuthResult authResult) {
                 return authResult.getUser() != null;
+            }
+        });
+    }
+
+    @Override
+    public Observable<Boolean> signOut() {
+
+        return Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                FirebaseAuth.getInstance().signOut();
+                googleApiClient.blockingConnect();
+                Status status = Auth.GoogleSignInApi.signOut(googleApiClient).await();
+                return status.isSuccess();
             }
         });
     }

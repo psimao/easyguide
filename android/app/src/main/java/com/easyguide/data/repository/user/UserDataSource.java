@@ -11,4 +11,6 @@ public interface UserDataSource {
     Observable<UserEntity> getUser();
 
     Observable<Boolean> persistUser(@NonNull UserEntity user);
+
+    Observable<Boolean> signOut();
 }

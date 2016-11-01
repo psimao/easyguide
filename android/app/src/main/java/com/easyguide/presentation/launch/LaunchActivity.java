@@ -26,7 +26,7 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View 
         new LaunchPresenter(
                 this,
                 Injection.providePreferencesRepository(this),
-                Injection.provideUserRepository(),
+                Injection.provideUserRepository(getApplicationContext()),
                 Injection.provideSchedulerProvider()
         );
     }

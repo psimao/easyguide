@@ -34,4 +34,9 @@ public class UserRepository implements UserDataSource {
     public Observable<Boolean> persistUser(@NonNull UserEntity user) {
         return userRemoteDataSource.persistUser(user);
     }
+
+    @Override
+    public Observable<Boolean> signOut() {
+        return userRemoteDataSource.signOut();
+    }
 }

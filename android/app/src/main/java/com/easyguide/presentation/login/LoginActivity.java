@@ -3,7 +3,6 @@ package com.easyguide.presentation.login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.easyguide.BaseActivity;
 import com.easyguide.Injection;
@@ -15,8 +14,6 @@ import com.easyguide.util.GoogleAuthenticationProvider;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,7 +21,7 @@ import butterknife.OnClick;
 /**
  * A login screen that offers login via Google Account.
  */
-public class LoginActivity extends BaseActivity implements LoginContract.View, GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private static final int RESULT_GOOGLE_ACCOUNT_LOGIN = 123;
 
@@ -38,7 +35,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
         setContentView(R.layout.activity_login);
         new LoginPresenter(
                 this,
-                Injection.provideUserRepository(),
+                Injection.provideUserRepository(getApplicationContext()),
                 Injection.provideSchedulerProvider()
         );
         ButterKnife.bind(this);
@@ -96,8 +93,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
     public void requestLoginWithGoogleAccount() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(
                 GoogleAuthenticationProvider.provideGoogleApiClient(
-                        this,
-                        this,
+                        getApplicationContext(),
                         getString(R.string.default_web_client_id)
                 )
         );
@@ -114,11 +110,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, G
     @Override
     public void setPresenter(LoginContract.Presenter presenter) {
         this.presenter = presenter;
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        showLoginErrorMessage(connectionResult.getErrorMessage());
     }
 
     @OnClick(R.id.button_login_google)
