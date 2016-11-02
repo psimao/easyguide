@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
+Properties props = new Properties()
+File propsFile = file('estimote-credencial.properties')
+if (propsFile.exists()) {
+    props.load(propsFile.newDataInputStream())
+} else {
+    throw new GradleException("Missing estimote-credencial.properties, check the estimote-credencial.properties.sample file.");
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
@@ -13,7 +21,13 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "ESTIMOTE_APP_ID", "\"${props.getProperty("estimoteAppID")}\""
+            buildConfigField "String", "ESTIMOTE_APP_TOKEN", "\"${props.getProperty("estimoteAppToken")}\""
+        }
         release {
+            buildConfigField "String", "ESTIMOTE_APP_ID", "\"${props.getProperty("estimoteAppID")}\""
+            buildConfigField "String", "ESTIMOTE_APP_TOKEN", "\"${props.getProperty("estimoteAppToken")}\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -33,12 +47,15 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
 
-    // Utilities
+    // Guava
     compile "com.google.guava:guava:$rootProject.guavaVersion"
 
     // ButterKnife
     compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    // Picasso
+    compile "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 
     // RxJava
     compile "io.reactivex:rxjava:$rootProject.rxjavaVersion"
@@ -50,7 +67,10 @@ dependencies {
     compile "com.google.firebase:firebase-auth:$rootProject.firebaseVersion"
 
     // Google
-    compile "com.google.android.gms:play-services-auth:$rootProject.firebaseVersion"
+    compile "com.google.android.gms:play-services-auth:$rootProject.googleGsmVersion"
+
+    // Estimote
+    compile "com.estimote:sdk:$rootProject.estimoteVersion"
 
     // Unit test
     testCompile "junit:junit:$rootProject.junitVersion"

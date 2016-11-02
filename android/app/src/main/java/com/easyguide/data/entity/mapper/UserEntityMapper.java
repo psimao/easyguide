@@ -1,13 +1,13 @@
 package com.easyguide.data.entity.mapper;
 
-import com.easyguide.data.entity.UserEntity;
+import com.easyguide.data.entity.User;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseUser;
 
 public class UserEntityMapper {
 
-    public static UserEntity transform(FirebaseUser firebaseUser) {
-        UserEntity user = new UserEntity();
+    public static User transform(FirebaseUser firebaseUser) {
+        User user = new User();
         user.setUid(firebaseUser.getUid());
         user.setName(firebaseUser.getDisplayName());
         user.setEmail(firebaseUser.getEmail());
@@ -17,8 +17,8 @@ public class UserEntityMapper {
         return user;
     }
 
-    public static UserEntity transform(GoogleSignInAccount googleSignInAccount) {
-        UserEntity user = new UserEntity();
+    public static User transform(GoogleSignInAccount googleSignInAccount) {
+        User user = new User();
         user.setUid(googleSignInAccount.getId());
         user.setName(googleSignInAccount.getDisplayName());
         user.setEmail(googleSignInAccount.getEmail());

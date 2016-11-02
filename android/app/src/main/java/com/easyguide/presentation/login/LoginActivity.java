@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.easyguide.BaseActivity;
 import com.easyguide.Injection;
 import com.easyguide.R;
-import com.easyguide.data.entity.UserEntity;
+import com.easyguide.data.entity.User;
 import com.easyguide.data.entity.mapper.UserEntityMapper;
 import com.easyguide.presentation.home.HomeActivity;
 import com.easyguide.util.GoogleAuthenticationProvider;
@@ -60,8 +60,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
-                UserEntity userEntity = UserEntityMapper.transform(account);
-                presenter.login(userEntity);
+                User user = UserEntityMapper.transform(account);
+                presenter.login(user);
             }
         }
     }

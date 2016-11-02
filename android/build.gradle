@@ -36,7 +36,10 @@ ext {
     rxjavaVersion = '1.1.8'
     rxandroidVersion = '1.2.1'
     firebaseVersion = '9.6.1'
+    googleGsmVersion = '9.6.1'
     butterknifeVersion = '8.4.0'
+    picassoVersion = '2.5.2'
+    estimoteVersion = '0.13.0'
     junitVersion = '4.12'
 }
 

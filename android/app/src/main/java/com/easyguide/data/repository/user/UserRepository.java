@@ -2,7 +2,7 @@ package com.easyguide.data.repository.user;
 
 import android.support.annotation.NonNull;
 
-import com.easyguide.data.entity.UserEntity;
+import com.easyguide.data.entity.User;
 
 import rx.Observable;
 
@@ -26,12 +26,12 @@ public class UserRepository implements UserDataSource {
     }
 
     @Override
-    public Observable<UserEntity> getUser() {
+    public Observable<User> getUser() {
         return userRemoteDataSource.getUser();
     }
 
     @Override
-    public Observable<Boolean> persistUser(@NonNull UserEntity user) {
+    public Observable<Boolean> persistUser(@NonNull User user) {
         return userRemoteDataSource.persistUser(user);
     }
 

@@ -2,7 +2,7 @@ package com.easyguide.presentation.login;
 
 import android.support.annotation.NonNull;
 
-import com.easyguide.data.entity.UserEntity;
+import com.easyguide.data.entity.User;
 import com.easyguide.data.repository.user.UserDataSource;
 import com.easyguide.util.schedulers.BaseSchedulerProvider;
 
@@ -61,7 +61,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void login(UserEntity user) {
+    public void login(User user) {
         view.showDefaultProgress();
         Subscription subscription =
                 userRepository.persistUser(user)
@@ -71,11 +71,11 @@ public class LoginPresenter implements LoginContract.Presenter {
         subscriptions.add(subscription);
     }
 
-    private Action1<UserEntity> getUserOnNextAction = new Action1<UserEntity>() {
+    private Action1<User> getUserOnNextAction = new Action1<User>() {
         @Override
-        public void call(UserEntity userEntity) {
+        public void call(User user) {
             view.dismissProgress();
-            if (userEntity != null) {
+            if (user != null) {
                 view.startHomeActivity();
             }
         }

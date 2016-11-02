@@ -2,7 +2,7 @@ package com.easyguide.data.repository.user;
 
 import android.support.annotation.NonNull;
 
-import com.easyguide.data.entity.UserEntity;
+import com.easyguide.data.entity.User;
 import com.easyguide.data.entity.mapper.UserEntityMapper;
 import com.easyguide.util.rxfirebase.RxFirebaseHandler;
 import com.google.android.gms.auth.api.Auth;
@@ -33,10 +33,10 @@ public class UserRemoteDataSource implements UserDataSource {
     }
 
     @Override
-    public Observable<UserEntity> getUser() {
-        return Observable.fromCallable(new Callable<UserEntity>() {
+    public Observable<User> getUser() {
+        return Observable.fromCallable(new Callable<User>() {
             @Override
-            public UserEntity call() throws Exception {
+            public User call() throws Exception {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
                     return UserEntityMapper.transform(firebaseUser);
@@ -48,7 +48,7 @@ public class UserRemoteDataSource implements UserDataSource {
     }
 
     @Override
-    public Observable<Boolean> persistUser(@NonNull UserEntity user) {
+    public Observable<Boolean> persistUser(@NonNull User user) {
         checkNotNull(user);
         final AuthCredential credential = GoogleAuthProvider.getCredential(user.getIdToken(), null);
         return Observable.create(new Observable.OnSubscribe<AuthResult>() {

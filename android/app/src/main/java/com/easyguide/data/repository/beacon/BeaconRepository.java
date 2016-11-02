@@ -2,7 +2,9 @@ package com.easyguide.data.repository.beacon;
 
 import android.support.annotation.NonNull;
 
-import com.easyguide.data.entity.UserEntity;
+import com.easyguide.data.entity.Beacon;
+
+import java.util.List;
 
 import rx.Observable;
 
@@ -12,21 +14,21 @@ public class BeaconRepository implements BeaconDataSource {
 
     private static BeaconRepository INSTANCE = null;
 
-    private final BeaconRemoteDataSource userRemoteDataSource;
+    private final BeaconRemoteDataSource beaconRemoteDataSource;
 
-    private BeaconRepository(@NonNull BeaconRemoteDataSource userRemoteDataSource) {
-        this.userRemoteDataSource = checkNotNull(userRemoteDataSource);
+    private BeaconRepository(@NonNull BeaconRemoteDataSource beaconRemoteDataSource) {
+        this.beaconRemoteDataSource = checkNotNull(beaconRemoteDataSource);
     }
 
-    public static BeaconRepository getInstance(@NonNull BeaconRemoteDataSource userRemoteDataSource) {
+    public static BeaconRepository getInstance(@NonNull BeaconRemoteDataSource beaconRemoteDataSource) {
         if (INSTANCE == null) {
-            INSTANCE = new BeaconRepository(userRemoteDataSource);
+            INSTANCE = new BeaconRepository(beaconRemoteDataSource);
         }
         return INSTANCE;
     }
 
     @Override
-    public Observable<UserEntity> getUser(@NonNull String username, @NonNull String password) {
-        return userRemoteDataSource.getUser(username, password);
+    public Observable<List<Beacon>> getBeacons() {
+        return beaconRemoteDataSource.getBeacons();
     }
 }

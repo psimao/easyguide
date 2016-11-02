@@ -1,6 +1,6 @@
 package com.easyguide.data.entity;
 
-public class UserEntity {
+public class User {
 
     private String uid;
     private String name;

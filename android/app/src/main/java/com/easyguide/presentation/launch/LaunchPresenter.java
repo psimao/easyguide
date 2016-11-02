@@ -2,7 +2,7 @@ package com.easyguide.presentation.launch;
 
 import android.support.annotation.NonNull;
 
-import com.easyguide.data.entity.UserEntity;
+import com.easyguide.data.entity.User;
 import com.easyguide.data.repository.preferences.PreferencesDataSource;
 import com.easyguide.data.repository.user.UserDataSource;
 import com.easyguide.util.schedulers.BaseSchedulerProvider;
@@ -71,9 +71,9 @@ public class LaunchPresenter implements LaunchContract.Presenter {
         }
     };
 
-    private Action1<UserEntity> userLoggedCheckOnNextAction = new Action1<UserEntity>() {
+    private Action1<User> userLoggedCheckOnNextAction = new Action1<User>() {
         @Override
-        public void call(UserEntity user) {
+        public void call(User user) {
             if (user != null) {
                 view.startHomeActivity();
             } else {

@@ -22,6 +22,11 @@
     <!-- Main -->
     <string name="main_title">Home</string>
     <string name="main_menu_logout">Log Out</string>
+    <string name="main_permission_error">Access your location is necessary to start exploring!</string>
+    <string name="main_permission_error_action">Try again</string>
+    <string name="main_bluetooth_permission_error">Turn on Bluetooth to continue start exploring!</string>
+    <string name="main_bluetooth_permission_error_action">Turn on</string>
+    <string name="main_undefined_beacon">Undefined</string>
 
     <!-- Profile -->
     <string name="profile_title">Profile</string>
