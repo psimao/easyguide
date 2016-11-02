@@ -1,3 +1,5 @@
+/* global admin, log, toastr, firebase */
+
 var auth = new function () {
 
     this.WRONG_PASS = 'The password you entered is incorrect';
@@ -26,16 +28,15 @@ var auth = new function () {
                     .on('value', function (snapshot) {
                         var stat = false;
                         var userFound = false;
-                        if (snapshot.val())
+                        if (snapshot.val()){
                             $.each(snapshot.val(), function (index, values) {
                                 userFound = true;
                                 if (values.password == $('#password').val()) {
-                                    values.dt_last_login = firebase.database.ServerValue.TIMESTAMP;
                                     admin.storeAdmin(index, values);
                                     window.location = 'index.html';
-                                    stat = true;
                                 }
                             });
+                        }
                         if (!stat) {
                             var throwable = userFound ? auth.WRONG_PASS : auth.USER_NOT_FOUND;
                             toastr.error(throwable);

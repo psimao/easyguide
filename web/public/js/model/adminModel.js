@@ -1,12 +1,15 @@
-this.admin = new function () {
+/* global auth, firebase */
+
+var admin = new function () {
     /**
      * Store the admin on localStorage to keep logged.
      * @param {type} hash user
      * @returns {undefined} void
      */
-    this.storeAdmin = function (hash, admin) {
+    this.storeAdmin = function (hash, adminObject) {
         localStorage.setItem(auth.LOCAL_STORAGE_ADMIN, hash);
-        this.updateAdmin(hash, admin);
+        adminObject.dt_last_login = firebase.database.ServerValue.TIMESTAMP;
+        admin.updateAdmin(hash, adminObject);
     };
 
     /**

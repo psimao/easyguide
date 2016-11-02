@@ -13,7 +13,11 @@
         <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.1-master-a687bfc/angular-material.css">
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-blue.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet">
-
+        <link rel="manifest" href="assets/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
+        <link rel="shortcut icon" type="image/png" href="assets/favicons/favicon.ico"/>
+        <meta name="theme-color" content="#ffffff">
         <!-- javascripts -->
         <script src="js/components/jquery.js"></script>
         <script src="js/components/jquery-ui-1.10.4.min.js"></script>
@@ -38,7 +42,7 @@
         <link href="css/module/admin.css" rel="stylesheet" />
         <!-- Bootstrap CSS -->    
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        
+
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue_grey-red.min.css">
         <!-- bootstrap theme -->
@@ -149,205 +153,203 @@
                         </div>
                     </div>
                     <div ng-controller="beaconCtrl" id="beaconCtrl">
-                        <div class="row">
-                            <div class="col-md-4 table-responsive">
-                                <div class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12" layout="column" layout-padding ng-cloak>
-                                    <div id="mainData">
-                                        <h3>Main Data</h3>
-                                        <p>fill in the fields according to the beacons</p>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_location_on_black_24px.svg" class="email"></md-icon>
-                                                    <input ng-model="form.beacon.location" type="text" placeholder="Location" ng-required="true">
-                                                </md-input-container>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-                                                    <input ng-model="form.beacon.uuid" type="text" placeholder="UUID" ng-required="true">
-                                                </md-input-container>
-                                            </div>
+                        <div class="col-md-4 table-responsive">
+                            <div class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12" layout="column" layout-padding ng-cloak>
+                                <div id="mainData">
+                                    <h3>Main Data</h3>
+                                    <p>fill in the fields according to the beacons</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <md-input-container class="md-block">
+                                                <md-icon md-svg-src="img/icons/ic_location_on_black_24px.svg" class="email"></md-icon>
+                                                <input ng-model="form.beacon.location" type="text" placeholder="Location" ng-required="true">
+                                            </md-input-container>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
-                                                    <input ng-model="form.beacon.major_value" type="text" placeholder="Major Value" ng-required="true">
-                                                </md-input-container>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
-                                                    <input ng-model="form.beacon.minor_value" type="text" placeholder="Minor Value" ng-required="true">
-                                                </md-input-container>
-                                            </div>
+                                        <div class="col-md-6">
+                                            <md-input-container class="md-block">
+                                                <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                                                <input ng-model="form.beacon.uuid" type="text" placeholder="UUID" ng-required="true">
+                                            </md-input-container>
                                         </div>
-                                        <md-button ng-click="set(form.beacon);" class="md-raised md-primary md-block">{{!form.beacon.key ? 'Save' : 'Edit'}}</md-button>
-                                        <md-button ng-if='form.beacon.key' ng-click="resetBeaconForm();" class="md-raised md-block">Cancel</md-button>
                                     </div>
-                                    <div ng-if="form.beacon.key" id="contents" class="col-md-12">
-                                        <hr>
-                                        <h3>Content</h3>
-                                        <p>The content about what will show in the device when a known beacon <br>have been found.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <md-input-container class="md-block">
+                                                <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                <input ng-model="form.beacon.major_value" type="text" placeholder="Major Value" ng-required="true">
+                                            </md-input-container>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <md-input-container class="md-block">
+                                                <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                <input ng-model="form.beacon.minor_value" type="text" placeholder="Minor Value" ng-required="true">
+                                            </md-input-container>
+                                        </div>
+                                    </div>
+                                    <md-button ng-click="set(form.beacon);" class="md-raised md-primary md-block">{{!form.beacon.key ? 'Save' : 'Edit'}}</md-button>
+                                    <md-button ng-if='form.beacon.key' ng-click="resetBeaconForm();" class="md-raised md-block">Cancel</md-button>
+                                </div>
+                                <div ng-if="form.beacon.key" id="contents" class="col-md-12">
+                                    <hr>
+                                    <h3>Content</h3>
+                                    <p>The content about what will show in the device when a known beacon <br>have been found.</p>
 
-                                        <div ng-if="form.beacon.content" class="row" id="tableBeaconContent">
-                                            <div>
-                                                <table class="table mdl-data-table mdl-js-data-table col-md-12">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="col-md-2">
-                                                    <center>Profile</center>
-                                                    </th>
-                                                    <th class="col-md-2">
-                                                    <center>Content</center>
-                                                    </th>
-                                                    <th class="col-md-2">
-                                                    <center>Action</center>
-                                                    </th>
-                                                    </tr>
-                                                    </thead>
+                                    <div ng-if="form.beacon.content" class="row" id="tableBeaconContent">
+                                        <div>
+                                            <table class="table mdl-data-table mdl-js-data-table col-md-12">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-md-2">
+                                                <center>Profile</center>
+                                                </th>
+                                                <th class="col-md-2">
+                                                <center>Content</center>
+                                                </th>
+                                                <th class="col-md-2">
+                                                <center>Action</center>
+                                                </th>
+                                                </tr>
+                                                </thead>
 
-                                                    <tbody>
-                                                        <tr grid-item ng-repeat="content in form.beacon.content">
-                                                            <td class="col-md-2"><center ng-bind="content.profile"></center></td>        
-                                                    <td class="col-md-2"><center ng-bind="content.text_content"></center></td> 
-                                                    <td class="col-md-2">
-                                                        <span>
-                                                            <center>
-                                                                <md-button class="md-fab md-mini md-primary">
-                                                                    <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadContentOnForm(content);"></md-icon>
-                                                                </md-button>
-                                                                <md-button class="md-fab md-mini md-warn">
-                                                                    <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delContent(form.beacon.key, content);"></md-icon>
-                                                                </md-button>
-                                                            </center>
-                                                        </span>
-                                                    </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                                <tbody>
+                                                    <tr grid-item ng-repeat="content in form.beacon.content">
+                                                        <td class="col-md-2"><center ng-bind="content.profile"></center></td>        
+                                                <td class="col-md-2"><center ng-bind="content.text_content"></center></td> 
+                                                <td class="col-md-2">
+                                                    <span>
+                                                        <center>
+                                                            <md-button class="md-fab md-mini md-primary">
+                                                                <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadContentOnForm(content);"></md-icon>
+                                                            </md-button>
+                                                            <md-button class="md-fab md-mini md-warn">
+                                                                <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delContent(form.beacon.key, content);"></md-icon>
+                                                            </md-button>
+                                                        </center>
+                                                    </span>
+                                                </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="formBeaconContent">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <md-input-container class="md-block">
+                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <input ng-model="form.content.profile" type="text" placeholder="Profile" ng-required="true">
+                                                </md-input-container>
                                             </div>
                                         </div>
-                                        <div class="row" id="formBeaconContent">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <md-input-container class="md-block">
-                                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
-                                                        <input ng-model="form.content.profile" type="text" placeholder="Profile" ng-required="true">
-                                                    </md-input-container>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <md-input-container class="md-block">
+                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <input ng-model="form.content.speech_content" type="text" placeholder="Speech cont." ng-required="true">
+                                                </md-input-container>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <md-input-container class="md-block">
-                                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
-                                                        <input ng-model="form.content.speech_content" type="text" placeholder="Speech cont." ng-required="true">
-                                                    </md-input-container>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <md-input-container class="md-block">
-                                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
-                                                        <input ng-model="form.content.speech_description" type="text" placeholder="Speech desc." ng-required="true">
-                                                    </md-input-container>
-                                                </div>
+                                            <div class="col-md-6">
+                                                <md-input-container class="md-block">
+                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <input ng-model="form.content.speech_description" type="text" placeholder="Speech desc." ng-required="true">
+                                                </md-input-container>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <md-input-container class="md-block">
-                                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
-                                                        <input ng-model="form.content.text_content" type="text" placeholder="Text cont." ng-required="true">
-                                                    </md-input-container>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <md-input-container class="md-block">
-                                                        <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
-                                                        <input ng-model="form.content.text_description" type="text" placeholder="Text desc." ng-required="true">
-                                                    </md-input-container>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <md-input-container class="md-block">
+                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <input ng-model="form.content.text_content" type="text" placeholder="Text cont." ng-required="true">
+                                                </md-input-container>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="file_input_div">
-                                                        <div class="file_input">
-                                                            <label class="image_input_button mdl-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-                                                                <i ng-click="addChangeListener();" class="material-icons">file_upload</i>
-                                                                <input type="file" id="file" accept="image/*"/>
-                                                            </label>
-                                                        </div>
-                                                        <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-                                                            <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" placeholder="Beacon Picture"ng-model="form.content.image_url" />
-                                                            <label class="mdl-textfield__label" for="file_input_text"></label>
-                                                        </div>
+                                            <div class="col-md-6">
+                                                <md-input-container class="md-block">
+                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <input ng-model="form.content.text_description" type="text" placeholder="Text desc." ng-required="true">
+                                                </md-input-container>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="file_input_div">
+                                                    <div class="file_input">
+                                                        <label class="image_input_button mdl-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+                                                            <i ng-click="addChangeListener();" class="material-icons">file_upload</i>
+                                                            <input type="file" id="file" accept="image/*"/>
+                                                        </label>
+                                                    </div>
+                                                    <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+                                                        <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" placeholder="Beacon Picture"ng-model="form.content.image_url" />
+                                                        <label class="mdl-textfield__label" for="file_input_text"></label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <md-button ng-click="setContent(form.beacon.key, form.content);" class="md-raised md-primary md-block">{{!form.content.key ? 'Save' : 'Edit'}}</md-button>
-                                                    <md-button ng-if='form.content.key' ng-click="resetContentForm();" class="md-raised md-block">Cancel</md-button>
-                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <md-button ng-click="setContent(form.beacon.key, form.content);" class="md-raised md-primary md-block">{{!form.content.key ? 'Save' : 'Edit'}}</md-button>
+                                                <md-button ng-if='form.content.key' ng-click="resetContentForm();" class="md-raised md-block">Cancel</md-button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div ng-if="form.beacon.key" id="actions">
-                                        <hr>
-                                        <h3>Actions</h3>
-                                        <p>Become the beacon smart! Use the action for the people <br>can ask about something(input) and give an output.</p>                           
-                                    </div>
+                                <div ng-hide="true" ng-if="form.beacon.key" id="actions">
+                                    <hr>
+                                    <h3>Actions</h3>
+                                    <p>Become the beacon smart! Use the action for the people <br>can ask about something(input) and give an output.</p>                           
                                 </div>
                             </div>
-                            <div class="col-md-8">
-                                <center>
-                                    <div class="table-responsive">
-                                        <table class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12">
-                                            <thead>
-                                                <tr>
-                                                    <th class="col-md-2">
-                                                        <span><center>Location</center></span>
-                                                    </th>
-                                                    <th class="col-md-1">
-                                                        <span><center>UUID</center></span>
-                                                    </th>
-                                                    <th class="col-md-3">
-                                                        <span><center>Major Value</center></span>
-                                                    </th>
-                                                    <th class="col-md-3">
-                                                        <span><center>Minor Value</center></span>
-                                                    </th>
-                                                    <th class="col-md-2">
-                                                        <span><center>Date created</center></span>
-                                                    </th>
-                                                    <th class="col-md-1">
-                                                        <span><center>Action</center></span>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                <tr grid-item ng-repeat="beacon in beacons">
-                                                    <td class="col-md-2"><center ng-bind="beacon.location"></center></td>
-                                            <td class="col-md-1"><center ng-bind="beacon.uuid"></center></td> 
-                                            <td class="col-md-3"><center ng-bind="beacon.major_value"></center></td>
-                                            <td class="col-md-3"><center ng-bind="beacon.minor_value"></center></td>
-                                            <td class="col-md-2"><center ng-bind="beacon.dt_created | date:'MM / dd / yyyy HH:mm:ss'"></center></td>
-                                            <td class="col-md-1">
-                                                <span>
-                                                    <center>
-                                                        <md-button class="md-fab md-mini md-primary">
-                                                            <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadBeaconOnForm(beacon);"></md-icon>
-                                                        </md-button>
-                                                        <md-button class="md-fab md-mini md-warn">
-                                                            <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="del(beacon);"></md-icon>
-                                                        </md-button>
-                                                    </center>
-                                                </span>
-                                            </td>
+                        </div>
+                        <div class="col-md-8">
+                            <center>
+                                <div class="table-responsive">
+                                    <table class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-2">
+                                                    <span><center>Location</center></span>
+                                                </th>
+                                                <th class="col-md-1">
+                                                    <span><center>UUID</center></span>
+                                                </th>
+                                                <th class="col-md-3">
+                                                    <span><center>Major Value</center></span>
+                                                </th>
+                                                <th class="col-md-3">
+                                                    <span><center>Minor Value</center></span>
+                                                </th>
+                                                <th class="col-md-2">
+                                                    <span><center>Date created</center></span>
+                                                </th>
+                                                <th class="col-md-1">
+                                                    <span><center>Action</center></span>
+                                                </th>
                                             </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </center>
-                            </div>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr grid-item ng-repeat="beacon in beacons">
+                                                <td class="col-md-2"><center ng-bind="beacon.location"></center></td>
+                                        <td class="col-md-1"><center ng-bind="beacon.uuid"></center></td> 
+                                        <td class="col-md-3"><center ng-bind="beacon.major_value"></center></td>
+                                        <td class="col-md-3"><center ng-bind="beacon.minor_value"></center></td>
+                                        <td class="col-md-2"><center ng-bind="beacon.dt_created | date:'MM / dd / yyyy HH:mm:ss'"></center></td>
+                                        <td class="col-md-1">
+                                            <span>
+                                                <center>
+                                                    <md-button class="md-fab md-mini md-primary">
+                                                        <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadBeaconOnForm(beacon);"></md-icon>
+                                                    </md-button>
+                                                    <md-button class="md-fab md-mini md-warn">
+                                                        <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="del(beacon);"></md-icon>
+                                                    </md-button>
+                                                </center>
+                                            </span>
+                                        </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </center>
                         </div>
                     </div>
                 </section>
