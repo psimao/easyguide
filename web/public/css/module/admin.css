@@ -20,7 +20,6 @@
 
 
 .buttondemoBasicUsage section {
-    background: #f7f7f7;
     border-radius: 3px;
     text-align: center;
     margin: 1em;
@@ -38,12 +37,10 @@
     position: absolute;
     bottom: 5px;
     left: 7px;
-    font-size: 14px;
-    opacity: 0.54; }
+}
 
 .file_input_div {
     margin: auto;
-    height: 40px;
 }
 
 .file_input {
@@ -51,7 +48,6 @@
 }
 
 #file_input_text_div {
-    margin-top: -8px;
     margin-left: 5px;
 }
 
@@ -99,7 +95,6 @@ ul.pagination {
     display: inline-block;
     text-decoration: none; }
   .pagination .active {
-    background: #3f51b5;
     border-color: #3f51b5; }
     .pagination .active a {
       color: #fff; }
@@ -138,3 +133,9 @@ ul.pagination {
 
 .sortable.sort-descent span:after {
   display: none; }
+
+.menudemoBasicUsage .md-menu-demo {
+  padding: 24px; }
+
+.menudemoBasicUsage .menu-demo-container {
+  min-height: 200px; }

@@ -12,19 +12,21 @@
         <!-- Application-->
         <link href="css/module/admin.css" rel="stylesheet" />
         <!-- Bootstrap CSS -->    
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- bootstrap theme -->
-        <link href="../css/bootstrap-theme.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
         <!-- font icon -->
-        <link href="../css/elegant-icons-style.css" rel="stylesheet" />
-        <link href="../css/font-awesome.min.css" rel="stylesheet" />
+        <link href="css/elegant-icons-style.css" rel="stylesheet" />
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
         <!-- Custom styles -->
-        <link href="../css/widgets.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
-        <link href="../css/style-responsive.css" rel="stylesheet" />
-        <link href="../css/xcharts.min.css" rel=" stylesheet">	
-        <link href="../css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+        <link href="css/widgets.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style-responsive.css" rel="stylesheet" />
+        <link href="css/xcharts.min.css" rel=" stylesheet">	
+        <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/module/comom.css" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
         <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.1-master-a687bfc/angular-material.css">
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-blue.min.css">
@@ -44,7 +46,6 @@
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue_grey-red.min.css" />
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="js/auth/firebase.config.js"></script>
         <script src="js/model/admin.js"></script>                    
         <script src="js/angular/admin.js"></script>
@@ -161,13 +162,13 @@
                                             <div class="col-md-3">
                                                 <div class="file_input_div">
                                                     <div class="file_input">
-                                                        <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+                                                        <label class="image_input_button mdl-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
                                                             <i class="material-icons">file_upload</i>
-                                                            <input class="none" type="file" id="file" accept="image/*"/>
+                                                            <input type="file" id="file" accept="image/*"/>
                                                         </label>
                                                     </div>
                                                     <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-                                                        <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" ng-model="user.image_profile" />
+                                                        <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" placeholder="Profile Picture"ng-model="user.image_profile" />
                                                         <label class="mdl-textfield__label" for="file_input_text"></label>
                                                     </div>
                                                 </div>
@@ -176,64 +177,64 @@
                                         <md-button ng-click="save();" class="md-raised md-primary md-block">Save</md-button>
                                     </md-content>
                                 </div>
-                        </div>
-                        <div class="row col-md-12">
-                            <center>
-                                <div class="table-responsive">
-                                    <table class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12" style="margin-top: 5px;">
-                                        <thead>
-                                            <tr>
-                                                <th class="col-md-2">
-                                                    <span><center>Name</center></span>
-                                                </th>
-                                                <th class="col-md-2">
-                                                    <span><center>Email</center></span>
-                                                </th>
-                                                <th class="col-md-2">
-                                                    <span><center>Date Created</center></span>
-                                                </th>
-                                                <th class="col-md-3">
-                                                    <span><center>Profile Picture</center></span>
-                                                </th>
-                                                <th class="col-md-3">
-                                                    <span><center>Action</center></span>
-                                                </th>
-                                            </tr>
-                                        </thead>
+                            </div>
+                            <div class="row col-md-12">
+                                <center>
+                                    <div class="table-responsive">
+                                        <table class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12" style="margin-top: 5px;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-2">
+                                                        <span><center>Name</center></span>
+                                                    </th>
+                                                    <th class="col-md-2">
+                                                        <span><center>Email</center></span>
+                                                    </th>
+                                                    <th class="col-md-2">
+                                                        <span><center>Date Created</center></span>
+                                                    </th>
+                                                    <th class="col-md-3">
+                                                        <span><center>Profile Picture</center></span>
+                                                    </th>
+                                                    <th class="col-md-3">
+                                                        <span><center>Action</center></span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
 
-                                        <tbody>
-                                            <tr grid-item ng-repeat="admin in admins">
-                                                <td class="col-md-2">
+                                            <tbody>
+                                                <tr grid-item ng-repeat="admin in admins">
+                                                    <td class="col-md-2">
+                                            <center>
+                                                <span ng-bind="admin.name"></span>
+                                            </center>
+                                            </td>
+                                            <td class="col-md-2"><center ng-bind="admin.email"></center></td>
+                                            <td class="col-md-2"><center ng-bind="admin.dt_created | date:'MM / dd / yyyy HH:mm:ss'"></center></td>
+                                            <td class="col-md-3">
+                                            <center>
+                                                <img height="30px" width="30px" ng-src="{{admin.image_profile}}">
+                                            </center>
+                                            </td>
+                                            <td class="col-md-3">
+                                                <span>
                                                     <center>
-                                                        <span ng-bind="admin.name"></span>
+                                                        <md-button class="md-fab md-mini md-primary">
+                                                            <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadAdminOnForm(admin);"></md-icon>
+                                                        </md-button>
+                                                        <md-button class="md-fab md-mini md-warn">
+                                                            <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delete(admin.key);"></md-icon>
+                                                        </md-button>
                                                     </center>
-                                                </td>
-                                                <td class="col-md-2"><center ng-bind="admin.email"></center></td>
-                                                <td class="col-md-2"><center ng-bind="admin.dt_created | date:'MM / dd / yyyy HH:mm:ss'"></center></td>
-                                                <td class="col-md-3">
-                                                    <center>
-                                                        <img height="30px" width="30px" ng-src="{{admin.image_profile}}">
-                                                    </center>
-                                                </td>
-                                                <td class="col-md-3">
-                                                    <span>
-                                                        <center>
-                                                            <md-button class="md-fab md-mini md-primary">
-                                                                <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadAdminOnForm(admin);"></md-icon>
-                                                            </md-button>
-                                                            <md-button class="md-fab md-mini md-warn">
-                                                                <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delete(admin.key);"></md-icon>
-                                                            </md-button>
-                                                        </center>
-                                                    </span>
-                                                </td>
+                                                </span>
+                                            </td>
                                             </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </center>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </center>
+                            </div>
                         </div>
-                    </div>
 
                 </section>
             </section>

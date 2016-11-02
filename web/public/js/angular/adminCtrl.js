@@ -1,6 +1,6 @@
 window.onload = function () {
-    document.getElementById('file').addEventListener('change', handleFileSelect, false);
     var db = firebase.database().ref(auth.FIREBASE_REF_ADMIN);
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
 
     db.on('child_added', function (snapshot) {
         var scope = angular.element(document.getElementById("adminCtrl")).scope();

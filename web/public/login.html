@@ -18,12 +18,14 @@
 
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">        
+        <link href="css/module/comom.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
         <script src="js/auth/firebase.config.js"></script>
         <script src="js/auth/auth.js"></script>
-        <script src="js/model/admin.js"></script>
-        <script src="js/model/log.js"></script>
+        <script src="js/model/adminModel.js"></script>
+        <script src="js/model/logModel.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 localStorage.removeItem('user');
@@ -35,9 +37,7 @@
         <div>
             <section class="login" id="login">
                 <header>
-                    <h2></h2>
-                    <img src="img/application/easy_guide_mini.png">
-                    <h4></h4>
+                    <h1><center>Easy Guide</center></h1>
                 </header>
                 <form class="login-form" onsubmit="auth.firebaseAuthByUserAndPass(); return false;">
                     <input id="username" type="text" class="login-input" placeholder="User" required autofocus/>
@@ -47,24 +47,6 @@
                     </div>
                 </form>
             </section>
-        </div>
-<!--
-        <div class="container">
-            <form class="login-form" onsubmit="auth.firebaseAuthByUserAndPass(); return false;">
-                <div class="login-wrap">
-                    <span class="input-group-addon"><img src="img/application/easy_guide_mini.png"></span>
-                    <p class="login-img"><i class="icon_lock_alt"></i></p>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="icon_profile"></i></span>
-                        <input id="username" type="text" class="form-control" placeholder="Username" autofocus>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                        <input id="password" type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-                </div>
-            </form>
         </div>
         <!-- TODOs
         Implement this library.
