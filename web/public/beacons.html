@@ -214,20 +214,20 @@
                                                 <tbody>
                                                     <tr grid-item ng-repeat="content in form.beacon.content">
                                                         <td class="col-md-2"><center ng-bind="content.profile"></center></td>        
-                                                <td class="col-md-2"><center ng-bind="content.text_content"></center></td> 
-                                                <td class="col-md-2">
-                                                    <span>
-                                                        <center>
-                                                            <md-button class="md-fab md-mini md-primary">
-                                                                <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadContentOnForm(content);"></md-icon>
-                                                            </md-button>
-                                                            <md-button class="md-fab md-mini md-warn">
-                                                                <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delContent(form.beacon.key, content);"></md-icon>
-                                                            </md-button>
-                                                        </center>
-                                                    </span>
-                                                </td>
-                                                </tr>
+                                                        <td class="col-md-2"><center ng-bind="content.text_content"></center></td> 
+                                                        <td class="col-md-2">
+                                                            <span>
+                                                                <center>
+                                                                    <md-button class="md-fab md-mini md-primary">
+                                                                        <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadContentOnForm(content);"></md-icon>
+                                                                    </md-button>
+                                                                    <md-button class="md-fab md-mini md-warn">
+                                                                        <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delContent(form.beacon.key, content);"></md-icon>
+                                                                    </md-button>
+                                                                </center>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -327,25 +327,25 @@
                                         </thead>
 
                                         <tbody>
-                                            <tr grid-item ng-repeat="beacon in beacons">
+                                            <tr ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" grid-item ng-repeat="beacon in beacons">
                                                 <td class="col-md-2"><center ng-bind="beacon.location"></center></td>
-                                        <td class="col-md-1"><center ng-bind="beacon.uuid"></center></td> 
-                                        <td class="col-md-3"><center ng-bind="beacon.major_value"></center></td>
-                                        <td class="col-md-3"><center ng-bind="beacon.minor_value"></center></td>
-                                        <td class="col-md-2"><center ng-bind="beacon.dt_created | date:'MM / dd / yyyy HH:mm:ss'"></center></td>
-                                        <td class="col-md-1">
-                                            <span>
-                                                <center>
-                                                    <md-button class="md-fab md-mini md-primary">
-                                                        <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadBeaconOnForm(beacon);"></md-icon>
-                                                    </md-button>
-                                                    <md-button class="md-fab md-mini md-warn">
-                                                        <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="del(beacon);"></md-icon>
-                                                    </md-button>
-                                                </center>
-                                            </span>
-                                        </td>
-                                        </tr>
+                                                <td class="col-md-1"><center ng-bind="beacon.uuid"></center></td> 
+                                                <td class="col-md-3"><center ng-bind="beacon.major_value"></center></td>
+                                                <td class="col-md-3"><center ng-bind="beacon.minor_value"></center></td>
+                                                <td class="col-md-2"><center ng-bind="beacon.dt_created | date:'MM / dd / yyyy HH:mm:ss'"></center></td>
+                                                <td class="col-md-1">
+                                                    <span>
+                                                        <center>
+                                                            <md-button class="md-fab md-mini md-primary">
+                                                                <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadBeaconOnForm(beacon);"></md-icon>
+                                                            </md-button>
+                                                            <md-button class="md-fab md-mini md-warn">
+                                                                <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="del(beacon);"></md-icon>
+                                                            </md-button>
+                                                        </center>
+                                                    </span>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

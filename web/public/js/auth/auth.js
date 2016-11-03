@@ -18,7 +18,10 @@ var auth = new function () {
     };
 
     this.firebaseAuthByUserAndPass = function () {
+        console.log('onsubmit 1');
         if (this.ValidateLoginForm()) {
+            console.log('onsubmit 2');
+
             firebase
                     .database()
                     .ref('/admin')
@@ -28,11 +31,11 @@ var auth = new function () {
                     .on('value', function (snapshot) {
                         var stat = false;
                         var userFound = false;
-                        if (snapshot.val()){
-                            $.each(snapshot.val(), function (index, values) {
+                        if (snapshot.val()) {
+                            snapshot.forEach(function (object) {
                                 userFound = true;
-                                if (values.password == $('#password').val()) {
-                                    admin.storeAdmin(index, values);
+                                if (object.val().password == $('#password').val()) {
+                                    admin.storeAdmin(object.key, object.val());
                                     window.location = 'index.html';
                                 }
                             });

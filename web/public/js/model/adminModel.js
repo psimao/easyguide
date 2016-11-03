@@ -9,7 +9,7 @@ var admin = new function () {
     this.storeAdmin = function (hash, adminObject) {
         localStorage.setItem(auth.LOCAL_STORAGE_ADMIN, hash);
         adminObject.dt_last_login = firebase.database.ServerValue.TIMESTAMP;
-        admin.updateAdmin(hash, adminObject);
+        return admin.updateAdmin(hash, adminObject);
     };
 
     /**
