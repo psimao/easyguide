@@ -53,6 +53,8 @@ public class MainFragment extends BaseFragment implements MainContract.View {
 
     private MainContract.Presenter presenter;
 
+    private BeaconsAdapter beaconsAdapter;
+
     @Override
     protected int fragmentTitleResourceId() {
         return R.string.main_title;
@@ -69,6 +71,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
                 this,
                 Injection.provideUserRepository(getActivity().getApplicationContext()),
                 Injection.provideBeaconRepository(),
+                Injection.provideProximityBeaconManager(getContext()),
                 Injection.provideSchedulerProvider()
         );
         return view;
@@ -86,6 +89,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
             return;
         }
         presenter.subscribe();
+
     }
 
     @Override
@@ -123,7 +127,6 @@ public class MainFragment extends BaseFragment implements MainContract.View {
                             }
                         })
                         .show();
-
                 return;
             }
             if (!isBluetoothEnabled()) {
@@ -169,7 +172,13 @@ public class MainFragment extends BaseFragment implements MainContract.View {
 
     @Override
     public void setBeacon(List<Beacon> beaconsList) {
-        recyclerViewBeacons.setAdapter(new BeaconsAdapter(getContext(), beaconsList));
+        if (beaconsAdapter == null) {
+            beaconsAdapter = new BeaconsAdapter(getContext(), beaconsList);
+            recyclerViewBeacons.setAdapter(beaconsAdapter);
+        } else {
+            beaconsAdapter.setSourceList(beaconsList);
+            beaconsAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

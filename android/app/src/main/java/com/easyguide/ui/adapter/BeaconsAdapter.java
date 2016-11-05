@@ -13,6 +13,7 @@ import com.easyguide.data.entity.Beacon;
 import com.easyguide.data.entity.BeaconContent;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,6 +29,10 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
         this.sourceList = sourceList;
     }
 
+    public void setSourceList(List<Beacon> sourceList) {
+        this.sourceList = sourceList;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -38,7 +43,14 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Beacon beacon = sourceList.get(position);
-        BeaconContent beaconContent = beacon.getContent() != null ? beacon.getContent().get(0) : null;
+        HashMap<String, BeaconContent> contents = beacon.getContent();
+        BeaconContent beaconContent = null;
+        if (contents != null) {
+            String key = contents.entrySet().iterator().next().getKey();
+            beaconContent = contents.get(key);
+        }
+        String distanceText = "~" + beacon.getDistance() + "m";
+        holder.textViewDistance.setText(distanceText);
         if (beaconContent != null) {
             holder.textViewDescription.setText(beaconContent.getTextDescription());
             Picasso.with(context)
@@ -63,6 +75,8 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
 
         @BindView(R.id.imageview_beacon)
         ImageView imageViewBeacon;
+        @BindView(R.id.textview_distance)
+        TextView textViewDistance;
         @BindView(R.id.textview_description)
         TextView textViewDescription;
 

@@ -3,7 +3,7 @@ package com.easyguide.data.repository.user;
 import android.support.annotation.NonNull;
 
 import com.easyguide.data.entity.User;
-import com.easyguide.data.entity.mapper.UserEntityMapper;
+import com.easyguide.data.entity.mapper.UserMapper;
 import com.easyguide.util.rxfirebase.RxFirebaseHandler;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -39,7 +39,7 @@ public class UserRemoteDataSource implements UserDataSource {
             public User call() throws Exception {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    return UserEntityMapper.transform(firebaseUser);
+                    return UserMapper.transform(firebaseUser);
                 } else {
                     return null;
                 }

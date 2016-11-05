@@ -8,4 +8,6 @@
     <color name="background_button_login">#FFF</color>
 
     <color name="toolbar_text_color">#FFF</color>
+
+    <color name="background_beacon_adapter_distance">#AAFFFFFF</color>
 </resources>

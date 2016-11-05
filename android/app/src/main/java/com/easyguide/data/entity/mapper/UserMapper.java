@@ -4,7 +4,7 @@ import com.easyguide.data.entity.User;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseUser;
 
-public class UserEntityMapper {
+public class UserMapper {
 
     public static User transform(FirebaseUser firebaseUser) {
         User user = new User();

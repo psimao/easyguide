@@ -24,6 +24,21 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@color/background_beacon_adapter_distance"
+                android:layout_gravity="end|bottom">
+
+                <TextView
+                    android:id="@+id/textview_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"/>
+
+            </LinearLayout>
         </FrameLayout>
 
         <TextView
