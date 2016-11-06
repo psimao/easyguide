@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+        <meta name="author" content="GeeksLabs">
+        <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+
+        <title>Easy Guide</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+        <link rel="stylesheet" href="https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.1-master-a687bfc/angular-material.css">
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-blue.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet">
+        <link rel="manifest" href="assets/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
+        <link rel="shortcut icon" type="image/png" href="assets/favicons/favicon.ico"/>
+        <meta name="theme-color" content="#ffffff">
+        <!-- javascripts -->
+
+        <!-- javascripts -->
+        <script src="js/components/jquery.js"></script>
+        <script src="js/components/jquery-ui-1.10.4.min.js"></script>
+        <script src="js/components/jquery-1.8.3.min.js"></script>
+        <script src="bower_components/firebase/firebase.js" type="text/javascript"></script>
+        <script src="js/auth/firebase.config.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/components/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="node_modules/toastr/toastr.js" type="text/javascript"></script>
+        <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
+        <script src="node_modules/angular-animate/angular-animate.min.js" type="text/javascript"></script>
+        <script src="node_modules/angular-aria/angular-aria.min.js" type="text/javascript"></script>
+        <script src="node_modules/angular-messages/angular-messages.min.js" type="text/javascript"></script>
+        <script src="node_modules/angular-material/angular-material.min.js" type="text/javascript"></script>
+        <script src="node_modules/angular-resource/angular-resource.min.js" type="text/javascript"></script>
+        <script src="bower_components/angular-route/angular-route.js" type="text/javascript"></script>
+        <script src="bower_components/angularfire/dist/angularfire.js" type="text/javascript"></script>
+
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+        <script src="https://angular-data-grid.github.io/dist/pagination.js"></script>
+        <script src="https://angular-data-grid.github.io/dist/dataGrid.js"></script>
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <!-- Application-->
+        <link href="css/module/log.css" rel="stylesheet" />
+        <!-- Bootstrap CSS -->    
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue_grey-red.min.css">
+        <!-- bootstrap theme -->
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <!-- font icon -->
+        <link href="css/elegant-icons-style.css" rel="stylesheet" />
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <!-- Custom styles -->
+        <link href="css/widgets.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style-responsive.css" rel="stylesheet">
+        <link href="css/xcharts.min.css" rel=" stylesheet">
+        <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+
+        <link href="css/module/comom.css" rel="stylesheet">        
+        <script src="js/auth/comom.js" type="text/javascript"></script>
+        <script src="js/angular/logCtrl.js" type="text/javascript"></script>
+
+    </head>
+
+    <body ng-app="EasyGuide">
+        <!-- container section start -->
+        <section id="container">
+            <header class="header dark-bg">
+                <div class="toggle-nav">
+                    <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+                </div>
+
+                <!--logo start-->
+                <a href="index.html" class="logo"><img src="img/application/easy_guide_mini_dark_theme.png" height="30px"></a>
+                <!--logo end-->
+                <div class="top-nav notification-row">                
+                    <!-- notificatoin dropdown start-->
+                    <ul class="nav pull-right top-menu">
+                        <!-- user login dropdown start-->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="profile-ava"><img src="img/application/placeholder/profile_picture.png" height="30px" width="30px" id="image_profile"></span>
+                                <span class="username" id="username"></span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                <div class="log-arrow-up"></div>
+                                <li>
+                                    <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- user login dropdown end -->
+                    </ul>
+                    <!-- notificatoin dropdown end-->
+                </div>
+            </header>
+            <!--header end-->
+
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar"  class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu">                
+                        <li >
+                            <a href="index.html">
+                                <i><img src="img/icons/ic_home_white_24px.svg"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="admin.html">
+                                <i><img src="img/icons/ic_person_white_24px.svg"></i>
+                                <span>Admin</span>
+                            </a>
+                        </li>
+                        <li>                     
+                            <a href="beacons.html">
+                                <i><img src="img/icons/ic_settings_bluetooth_white_24px.svg"></i>
+                                <span>Beacon</span>
+
+                            </a>
+                        </li>
+                        <li class="active">                     
+                            <a href="log.html">
+                                <i><img src="img/icons/ic_view_list_white_24px.svg"></i>
+                                <span>Log</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+
+            <!--main content start-->
+            <section id="main-content" >
+                <section class="wrapper">            
+                    <!--overview start-->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3 class="page-header"><i class="fa fa-laptop"></i>Log</h3>
+                        </div>
+                    </div>
+                    <div ng-controller="logCtrl" id="logCtrl" layout="column" layout-fill>
+                        <div class="col-md-6">
+                            <md-content layout-padding layout="row" layout-align="center">
+                                <div flex-gt-md="60" flex-md="80" flex-xs="100">
+                                    <div layout-gt-xs="row" layout-xs="column" layout-align="stretch center">
+                                        <div grid-data id='test' grid-options="gridOptions" grid-actions="gridActions">
+                                            <div layout-gt-sm="row" layout-sm="column" layout-align="center">
+                                                <div flex-gt-sm="25" flex-sm="100" layout="row" layout-align="start center">
+                                                    <span>{{logs}} items total</span>
+                                                </div>
+                                                <div flex-gt-sm="75" flex-xs="100">
+                                                    <div layout-xs="column" layout="row" layout-align-xs="end end" layout-align="end center">
+                                                        <grid-pagination max-size="5"
+                                                                         boundary-links="true"
+                                                                         class="pagination mdl-shadow--2dp"
+                                                                         ng-if="paginationOptions.totalItems > paginationOptions.itemsPerPage"
+                                                                         total-items="paginationOptions.totalItems"
+                                                                         ng-model="paginationOptions.currentPage"
+                                                                         ng-change="reloadGrid()"
+                                                                         items-per-page="paginationOptions.itemsPerPage"></grid-pagination>
+                                                        <md-input-container flex-offset-gt-xs="5" class="items-per-page">
+                                                            <md-select ng-init="paginationOptions.itemsPerPage = '10'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
+                                                                <md-option>10</md-option>
+                                                                <md-option>25</md-option>
+                                                                <md-option>50</md-option>
+                                                                <md-option>75</md-option>
+                                                            </md-select>
+                                                        </md-input-container>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                                                    <thead>
+                                                        <tr>
+                                                            <th sortable="code" class="sortable mdl-data-table__cell--non-numeric">
+                                                                <span>Order #</span>
+                                                            </th>
+                                                            <th class="st-sort-disable th-dropdown">
+                                                    <md-select filter-by="statusDisplay"
+                                                               filter-type="select"
+                                                               ng-model="status"
+                                                               placeholder="Status"
+                                                               ng-change="filter()">
+                                                        <md-option value="">All Statuses</md-option>
+                                                        <md-option ng-repeat="option in statusOptions track by option.value"
+                                                                   value="{{option.value}}">
+                                                            {{option.text}}
+                                                        </md-option>
+                                                    </md-select>
+                                                    </th>
+                                                    <th sortable="placed" class="sortable">
+                                                        <span>Date Placed</span>
+                                                    </th>
+                                                    <th sortable='total.value' class="sortable">
+                                                        <span>Total</span>
+                                                    </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr grid-item ng-repeat="web in webLog">
+                                                            <td class="mdl-data-table__cell--non-numeric">
+                                                                <span ng-bind="web.status"></span>
+                                                            </td>
+                                                            <td ng-bind="item.statusDisplay"></td>
+                                                            <td ng-bind="item.placed | date:'MM / dd / yyyy'"></td>
+                                                            <td ng-bind="item.total.formattedValue"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div layout-xs="column" layout="row" layout-align-xs="end end" layout-align="end center">
+                                                <grid-pagination max-size="5"
+                                                                 boundary-links="true"
+                                                                 class="pagination"
+                                                                 ng-if="paginationOptions.totalItems > paginationOptions.itemsPerPage"
+                                                                 total-items="paginationOptions.totalItems"
+                                                                 ng-model="paginationOptions.currentPage"
+                                                                 ng-change="reloadGrid()"
+                                                                 items-per-page="paginationOptions.itemsPerPage"></grid-pagination>
+                                                <md-input-container flex-offset-gt-xs="5" class="items-per-page">
+                                                    <md-select ng-init="paginationOptions.itemsPerPage = '10'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
+                                                        <md-option>10</md-option>
+                                                        <md-option>25</md-option>
+                                                        <md-option>50</md-option>
+                                                        <md-option>75</md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </div>
+
+                        <div class="col-md-6">
+                            <md-content layout-padding layout="row" layout-align="center">
+                                <div flex-gt-md="60" flex-md="80" flex-xs="100">
+                                    <div layout-gt-xs="row" layout-xs="column" layout-align="stretch center">
+                                        <div grid-data id='test' grid-options="gridOptions" grid-actions="gridActions">
+                                            <div layout-gt-sm="row" layout-sm="column" layout-align="center">
+                                                <div flex-gt-sm="25" flex-sm="100" layout="row" layout-align="start center">
+                                                    <span>{{logs}} items total</span>
+                                                </div>
+                                                <div flex-gt-sm="75" flex-xs="100">
+                                                    <div layout-xs="column" layout="row" layout-align-xs="end end" layout-align="end center">
+                                                        <grid-pagination max-size="5"
+                                                                         boundary-links="true"
+                                                                         class="pagination mdl-shadow--2dp"
+                                                                         ng-if="paginationOptions.totalItems > paginationOptions.itemsPerPage"
+                                                                         total-items="paginationOptions.totalItems"
+                                                                         ng-model="paginationOptions.currentPage"
+                                                                         ng-change="reloadGrid()"
+                                                                         items-per-page="paginationOptions.itemsPerPage"></grid-pagination>
+                                                        <md-input-container flex-offset-gt-xs="5" class="items-per-page">
+                                                            <md-select ng-init="paginationOptions.itemsPerPage = '10'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
+                                                                <md-option>10</md-option>
+                                                                <md-option>25</md-option>
+                                                                <md-option>50</md-option>
+                                                                <md-option>75</md-option>
+                                                            </md-select>
+                                                        </md-input-container>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                                                    <thead>
+                                                        <tr>
+                                                            <th sortable="code" class="sortable mdl-data-table__cell--non-numeric">
+                                                                <span>Order #</span>
+                                                            </th>
+                                                            <th class="st-sort-disable th-dropdown">
+                                                    <md-select filter-by="statusDisplay"
+                                                               filter-type="select"
+                                                               ng-model="status"
+                                                               placeholder="Status"
+                                                               ng-change="filter()">
+                                                        <md-option value="">All Statuses</md-option>
+                                                        <md-option ng-repeat="option in statusOptions track by option.value"
+                                                                   value="{{option.value}}">
+                                                            {{option.text}}
+                                                        </md-option>
+                                                    </md-select>
+                                                    </th>
+                                                    <th sortable="placed" class="sortable">
+                                                        <span>Date Placed</span>
+                                                    </th>
+                                                    <th sortable='total.value' class="sortable">
+                                                        <span>Total</span>
+                                                    </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr grid-item ng-repeat="web in webLog">
+                                                            <td class="mdl-data-table__cell--non-numeric">
+                                                                <span ng-bind="web.status"></span>
+                                                            </td>
+                                                            <td ng-bind="item.statusDisplay"></td>
+                                                            <td ng-bind="item.placed | date:'MM / dd / yyyy'"></td>
+                                                            <td ng-bind="item.total.formattedValue"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div layout-xs="column" layout="row" layout-align-xs="end end" layout-align="end center">
+                                                <grid-pagination max-size="5"
+                                                                 boundary-links="true"
+                                                                 class="pagination"
+                                                                 ng-if="paginationOptions.totalItems > paginationOptions.itemsPerPage"
+                                                                 total-items="paginationOptions.totalItems"
+                                                                 ng-model="paginationOptions.currentPage"
+                                                                 ng-change="reloadGrid()"
+                                                                 items-per-page="paginationOptions.itemsPerPage"></grid-pagination>
+                                                <md-input-container flex-offset-gt-xs="5" class="items-per-page">
+                                                    <md-select ng-init="paginationOptions.itemsPerPage = '10'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
+                                                        <md-option>10</md-option>
+                                                        <md-option>25</md-option>
+                                                        <md-option>50</md-option>
+                                                        <md-option>75</md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <!--main content end-->
+        </section>
+        <!-- container section start -->
+        <!-- bootstrap -->
+        <script src="js/components/bootstrap.min.js"></script>
+        <!-- nice scroll -->
+        <script src="js/components/jquery.scrollTo.min.js"></script>
+        <script src="js/components/jquery.nicescroll.js" type="text/javascript"></script>
+        <!-- jQuery full calendar -->
+        <!--custome script for all page-->
+        <script src="js/components/scripts.js"></script>
+
+        <link rel="manifest" href="assets/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
+        <link rel="shortcut icon" type="image/png" href="assets/favicons/favicon.ico"/>
+        <meta name="theme-color" content="#ffffff">
+    </body>
+</html>
