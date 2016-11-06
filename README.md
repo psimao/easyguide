@@ -1,6 +1,6 @@
 # Easy Guide
 Platform that aims to provide accessibility for the visually impaired through the use of the web, beacons and mobile applications. It's divided by 2 environments for now: Android and Firebase (with Serverless Web Application and Realtime Database).
-![Icons Easy Guide](assets/icons_rasyguide.png)
+![Icons Easy Guide](assets/icons_easyguide.png)
 
 ### Android
 The Android application works as final user interface, giving them information about nearest objects and locations.
