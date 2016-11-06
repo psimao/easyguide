@@ -33,4 +33,7 @@
 
     <!-- History -->
     <string name="history_title">History</string>
+
+    <!-- Beacon -->
+    <string name="beacon_title">Beacon Detail</string>
 </resources>

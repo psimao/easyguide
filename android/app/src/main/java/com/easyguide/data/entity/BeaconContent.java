@@ -2,7 +2,9 @@ package com.easyguide.data.entity;
 
 import com.google.firebase.database.PropertyName;
 
-public class BeaconContent {
+import java.io.Serializable;
+
+public class BeaconContent implements Serializable {
 
     @PropertyName("profile")
     Long profile;

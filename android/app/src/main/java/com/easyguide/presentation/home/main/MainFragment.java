@@ -26,6 +26,7 @@ import com.easyguide.BaseFragment;
 import com.easyguide.Injection;
 import com.easyguide.R;
 import com.easyguide.data.entity.Beacon;
+import com.easyguide.presentation.beacon.BeaconActivity;
 import com.easyguide.presentation.login.LoginActivity;
 import com.easyguide.ui.adapter.BeaconsAdapter;
 
@@ -34,7 +35,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainFragment extends BaseFragment implements MainContract.View {
+public class MainFragment extends BaseFragment implements MainContract.View, BeaconsAdapter.OnItemClickListener {
 
     private static final int RECYCLERVIEW_VERTICAL_SPAN_SIZE = 2;
     private static final int RECYCLERVIEW_HORIZONTAL_SPAN_SIZE = 3;
@@ -174,6 +175,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     public void setBeacon(List<Beacon> beaconsList) {
         if (beaconsAdapter == null) {
             beaconsAdapter = new BeaconsAdapter(getContext(), beaconsList);
+            beaconsAdapter.setOnItemClickListener(this);
             recyclerViewBeacons.setAdapter(beaconsAdapter);
         } else {
             beaconsAdapter.setSourceList(beaconsList);
@@ -240,5 +242,12 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     private void requestBluetoothActivation() {
         Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
         startActivityForResult(intent, RESULT_REQUEST_BLUETOOTH_ACTIVATION);
+    }
+
+    @Override
+    public void OnIemClick(int position, Beacon beacon) {
+        Intent intent = new Intent(getContext(), BeaconActivity.class);
+        intent.putExtra(BeaconActivity.EXTRA_BEACON, beacon);
+        startActivity(intent);
     }
 }

@@ -33,6 +33,10 @@
         <activity
             android:name=".presentation.home.HomeActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:parentActivityName=".presentation.home.HomeActivity"
+            android:name=".presentation.beacon.BeaconActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

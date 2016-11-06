@@ -18,11 +18,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHolder> {
 
     private Context context;
     private List<Beacon> sourceList;
+    private OnItemClickListener onItemClickListener;
 
     public BeaconsAdapter(Context context, List<Beacon> sourceList) {
         this.context = context;
@@ -31,6 +33,10 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
 
     public void setSourceList(List<Beacon> sourceList) {
         this.sourceList = sourceList;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -84,5 +90,17 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
+        @OnClick(R.id.cardview_beacon)
+        void cardViewOnClick() {
+            if(onItemClickListener != null) {
+                onItemClickListener.OnIemClick(getAdapterPosition(), sourceList.get(getAdapterPosition()));
+            }
+        }
+
+    }
+
+    public interface OnItemClickListener {
+        void OnIemClick(int position, Beacon beacon);
     }
 }

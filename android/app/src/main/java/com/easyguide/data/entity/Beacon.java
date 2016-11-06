@@ -2,9 +2,10 @@ package com.easyguide.data.entity;
 
 import com.google.firebase.database.PropertyName;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Beacon {
+public class Beacon implements Serializable {
 
     @PropertyName("uuid")
     String uuid;
