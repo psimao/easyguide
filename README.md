@@ -24,7 +24,12 @@ It's possible to change user profile and setup beacons content and actions accor
  - Import initial database structure in Database menu (see more detail [here](https://firebase.google.com/docs/database/));
 
 ### Web
-- TODO
+- Install firebase in your machine (npm install -g firebase-tools). If you don't have the NodeJS installed, follow the instructions [here](https://howtonode.org/how-to-install-nodejs);
+- Enter in cloned path `/path/to/easyguide/web`;
+- Create your config file from `js/auth/firebase.sample.config.js` to `js/auth/firebase.config.js`;
+- Enter in [Firebase Console](https://console.firebase.google.com/), click in `add application` select the option `Add Firebase to your Web app`, copy the generated instructions to `js/auth/firebase.config.js`;
+- Init the firebase web app `firebase init`;
+- Finally deploy `firebase deploy`;
 
 ### Android
  - Register the Android App in Project Settings menu on [Firebase Console](https://console.firebase.google.com/), download `google-services.json` file and put it on `android/app` folder (see more details [here](https://firebase.google.com/docs/android/setup));
