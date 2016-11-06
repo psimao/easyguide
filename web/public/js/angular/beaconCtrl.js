@@ -67,7 +67,7 @@ function handleFileSelect(evt) {
  * @param {type} param2
  */
 angular
-        .module('EasyGuide', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+        .module('EasyGuide', ['ngAnimate', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
         .controller('beaconCtrl', function ($scope) {
 
             $scope.form = Array();
@@ -128,7 +128,7 @@ angular
             };
 
             $scope.setPhotoContent = function (photo) {
-                if(!$scope.form.content){
+                if (!$scope.form.content) {
                     $scope.form.content = Array();
                 }
                 $scope.form.content.image_url = photo;
@@ -140,6 +140,7 @@ angular
 
             $scope.loadBeaconOnForm = function (beacon) {
                 $scope.form.beacon = angular.copy(beacon);
+                $scope.form.content = angular.copy(beacon.content);
             };
 
             $scope.loadContentOnForm = function (content) {
@@ -148,6 +149,7 @@ angular
 
             $scope.resetBeaconForm = function () {
                 $scope.form.beacon = Array();
+                $scope.form.content = Array();
             };
 
             $scope.resetContentForm = function () {
@@ -173,19 +175,19 @@ var validate = new function () {
         var errorMsg = [];
 
         if (object != null) {
-            if (object.uuid == null || object.uuid.trim().length < 3) {
+            if (object.uuid == null || object.uuid.length < 3) {
                 stat = false;
                 errorMsg.push("UUID should has at least 3 numbers");
             }
-            if (object.location == null || object.location.trim().length < 3) {
+            if (object.location == null || object.location.length < 3) {
                 stat = false;
                 errorMsg.push("Location should has at least 3 caracteres");
             }
-            if (object.major_value == null || object.major_value.trim().length < 3) {
+            if (object.major_value == null || object.major_value.length < 3) {
                 stat = false;
                 errorMsg.push("Mayor Value should has at least 3 caracteres");
             }
-            if (object.minor_value == null || object.minor_value.trim().length < 3) {
+            if (object.minor_value == null || object.minor_value.length < 3) {
                 stat = false;
                 errorMsg.push("Minor Value should has at least 3 caracteres");
             }
@@ -205,23 +207,23 @@ var validate = new function () {
         var stat = true;
         var errorMsg = [];
         if (object != null) {
-            if (object.profile == null || object.profile.trim().length == 0) {
+            if (object.profile == null || object.profile.length == 0) {
                 stat = false;
                 errorMsg.push("Profile should be filled");
             }
-            if (object.speech_content == null || object.speech_content.trim().length < 3) {
+            if (object.speech_content == null || object.speech_content.length < 3) {
                 stat = false;
                 errorMsg.push("Speech content should has at least 3 caracteres");
             }
-            if (object.speech_description == null || object.speech_description.trim().length < 3) {
+            if (object.speech_description == null || object.speech_description.length < 3) {
                 stat = false;
                 errorMsg.push("Speech description should has at least 3 caracteres");
             }
-            if (object.text_content == null || object.text_content.trim().length < 3) {
+            if (object.text_content == null || object.text_content.length < 3) {
                 stat = false;
                 errorMsg.push("Text content should has at least 3 caracteres");
             }
-            if (object.text_description == null || object.text_description.trim().length < 3) {
+            if (object.text_description == null || object.text_description.length < 3) {
                 stat = false;
                 errorMsg.push("Text description should has at least 3 caracteres");
             }

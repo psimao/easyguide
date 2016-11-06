@@ -18,10 +18,7 @@ var auth = new function () {
     };
 
     this.firebaseAuthByUserAndPass = function () {
-        console.log('onsubmit 1');
         if (this.ValidateLoginForm()) {
-            console.log('onsubmit 2');
-
             firebase
                     .database()
                     .ref('/admin')
