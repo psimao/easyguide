@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context="com.easyguide.presentation.login.LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_logo_margin_top"
+        android:contentDescription="@null"
+        android:src="@drawable/logo_easy_guide"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_message_margin_top"
+        android:contentDescription="@string/login_textview_message_contdes"
+        android:gravity="center"
+        android:text="@string/login_textview_message"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_login_google"
+        style="@style/AppTheme.LoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/login_google_button_margin_top"
+        android:contentDescription="@string/login_button_login_google_contdes"
+        android:drawableLeft="@drawable/ic_google"
+        android:drawableStart="@drawable/ic_google"
+        android:paddingEnd="@dimen/login_google_button_padding_icon"
+        android:paddingLeft="@dimen/login_google_button_padding_icon"
+        android:paddingRight="@dimen/login_google_button_padding_icon"
+        android:paddingStart="@dimen/login_google_button_padding_icon"
+        android:text="@string/login_button_login_google"/>
+</LinearLayout>

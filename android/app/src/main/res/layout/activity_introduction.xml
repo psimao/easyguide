@@ -1,0 +1,86 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fafafa"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="88dp">
+
+            <ImageView
+                android:id="@+id/imageview_icon_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_introduction_1"/>
+
+            <ImageView
+                android:id="@+id/imageview_icon_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:visibility="gone"/>
+
+        </FrameLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_intro"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_bottom_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <FrameLayout
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:background="#bbbbbb"/>
+
+            <FrameLayout
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginStart="7dp"
+                android:background="#bbbbbb"/>
+
+            <FrameLayout
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginStart="7dp"
+                android:background="#bbbbbb"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_start_exploring"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="@string/introduction_button_start_exploring"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+</ScrollView>
