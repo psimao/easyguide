@@ -3,38 +3,43 @@ Platform that aims to provide accessibility for the visually impaired through th
 
 ![Icons Easy Guide](assets/icons_easyguide.png)
 
-### Android
+
+## Android
 The Android application works as final user interface, giving them information about nearest objects and locations.
 
 ![Android and App Icon](assets/android_logoapp.png)
 
 The app scans near beacons and get it informations in a firebase database. If accessibility mode is ON then Easy Guide shows the content by voice.
 
-### Web Application
+
+## Web Application
 Admins interface to manage users and beacons contents.
 It's possible to change user profile and setup beacons content and actions according to that.
 
-### Get Started
 
-#### Firebase
+## Get Started
+
+### Firebase
  - Download or clone [master](https://github.com/pedroartsimao/easyguide/tree/master) branch;
  - Create a new project on [Firebase Console](https://console.firebase.google.com/);
  - Enable Login with Google Account in Authentication menu (see more details [here](https://firebase.google.com/docs/auth/))
  - Import initial database structure in Database menu (see more detail [here](https://firebase.google.com/docs/database/));
 
-#### Web
+### Web
 - TODO
 
-#### Android
+### Android
  - Register the Android App in Project Settings menu on [Firebase Console](https://console.firebase.google.com/), download `google-services.json` file and put it on `android/app` folder (see more details [here](https://firebase.google.com/docs/android/setup));
  - Create a new Project on [Estimote Cloud](https://cloud.estimote.com/#/apps) and create `estimote-credencial.properties` file in `android/app/` folder based in `estimote-credencial.properties.sample` (found in the same folder);
  - Open `android` folder in **Android Studio**;
  - Build it!
 
-### Contributing
+
+## Contributing
 See our [Contributing Guide](https://github.com/pedroartsimao/easyguide/wiki/1.-Guide:-Contributing) page on Easy Guide Wiki for checking tips of enviorenment setup and good pratices to follow.
 
-### License
+
+## License
 ```
 Copyright (C) 2016 Pedro Simão
 
@@ -51,7 +56,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-### Contact
+
+## Contact
 Want to get in touch, ask a question, or talk to me about anything else which isn't on the [Easy Guide Wiki](https://github.com/pedroartsimao/easyguide/wiki)? Ping Easy Guide team on <easyguideteam@gmail.com>.
 
 Thanks for your interest, Pedro Simão
