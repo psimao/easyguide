@@ -1,0 +1,18 @@
+h1 {
+    font-family: 'Berkshire Swash', cursive;
+}
+
+h3 {
+    font-family: 'Berkshire Swash', cursive;
+}
+
+td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.menudemoMenuPositionModes .md-menu-demo {
+  padding: 24px; }
+
+.menudemoMenuPositionModes .menu-demo-container {
+  min-height: 200px; }
