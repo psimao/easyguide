@@ -1,0 +1,6 @@
+# Read https://community.estimote.com/hc/en-us/articles/210530428
+# Create a “fabric.properties” file in your app directory
+# Estimote consumer keys can be generated at https://cloud.estimote.com/#/apps
+
+estimoteAppID = YOUR_APP_ID
+estimoteAppToken = YOUR_APP_TOKEN

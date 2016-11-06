@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+Properties props = new Properties()
+File propsFile = file('estimote-credencial.properties')
+if (propsFile.exists()) {
+    props.load(propsFile.newDataInputStream())
+} else {
+    throw new GradleException("Missing estimote-credencial.properties, check the estimote-credencial.properties.sample file.");
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId "com.easyguide"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "ESTIMOTE_APP_ID", "\"${props.getProperty("estimoteAppID")}\""
+            buildConfigField "String", "ESTIMOTE_APP_TOKEN", "\"${props.getProperty("estimoteAppToken")}\""
+        }
+        release {
+            buildConfigField "String", "ESTIMOTE_APP_ID", "\"${props.getProperty("estimoteAppID")}\""
+            buildConfigField "String", "ESTIMOTE_APP_TOKEN", "\"${props.getProperty("estimoteAppToken")}\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // Android support libraries
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+
+    // Guava
+    compile "com.google.guava:guava:$rootProject.guavaVersion"
+
+    // ButterKnife
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    // Picasso
+    compile "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+
+    // RxJava
+    compile "io.reactivex:rxjava:$rootProject.rxjavaVersion"
+    compile "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
+
+    // Firebase
+    compile "com.google.firebase:firebase-core:$rootProject.firebaseVersion"
+    compile "com.google.firebase:firebase-database:$rootProject.firebaseVersion"
+    compile "com.google.firebase:firebase-auth:$rootProject.firebaseVersion"
+
+    // Google
+    compile "com.google.android.gms:play-services-auth:$rootProject.googleGsmVersion"
+
+    // Estimote
+    compile "com.estimote:sdk:$rootProject.estimoteVersion"
+
+    // Unit test
+    testCompile "junit:junit:$rootProject.junitVersion"
+}
+
+apply plugin: 'com.google.gms.google-services'

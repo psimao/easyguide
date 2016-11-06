@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#aaaaaa</color>
+    <color name="colorPrimaryDark">#929292</color>
+    <color name="colorAccent">#00a4d3</color>
+
+    <color name="ripple_default">#44000000</color>
+    <color name="background_button_login">#FFF</color>
+
+    <color name="toolbar_text_color">#FFF</color>
+
+    <color name="background_beacon_adapter_distance">#AAFFFFFF</color>
+</resources>

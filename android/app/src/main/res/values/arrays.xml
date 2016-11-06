@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="introduction_titles">
+        <item>Let\'s explore!</item>
+        <item>Physical World</item>
+        <item>Accessible</item>
+    </array>
+    <array name="introduction_messages">
+        <item><![CDATA[The <b>smartest</b> way to see what\'s <b>near by ;)</b>]]></item>
+        <item><![CDATA[Discovery what\'s around you by <b>beacons</b>!]]></item>
+        <item><![CDATA[Talkback compatible!<br>Friendly design for visually impaired.]]></item>
+    </array>
+</resources>

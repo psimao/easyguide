@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "00000000000000",
+    "firebase_url": "https://easy-guide-0000.firebaseio.com",
+    "project_id": "easy-guide-00000",
+    "storage_bucket": "easy-guide-0000.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "0:000000000000:android:000000000000",
+        "android_client_info": {
+          "package_name": "com.easyguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "0000000000-00000000000.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.easyguide",
+            "certificate_hash": "0000000000000000000000"
+          }
+        },
+        {
+          "client_id": "00000000-0000000000000000.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "000000000-000000000"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "0000-00000.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
