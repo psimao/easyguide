@@ -3,16 +3,14 @@ Platform that aims to provide accessibility for the visually impaired through th
 
 ![Icons Easy Guide](assets/icons_easyguide.png)
 
-
-## Android
+### Android
 The Android application works as final user interface, giving them information about nearest objects and locations.
 
 ![Android and App Icon](assets/android_logoapp.png)
 
 The app scans near beacons and get it informations in a firebase database. If accessibility mode is ON then Easy Guide shows the content by voice.
 
-
-## Web Application
+### Web Application
 Admins interface to manage users and beacons contents.
 It's possible to change user profile and setup beacons content and actions according to that.
 
