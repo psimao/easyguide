@@ -1,7 +1,6 @@
 package com.easyguide.presentation.home.main;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.easyguide.data.entity.Beacon;
 import com.easyguide.data.repository.beacon.BeaconDataSource;
@@ -89,7 +88,6 @@ public class MainPresenter implements MainContract.Presenter {
         public void call(List<Beacon> beacons) {
             if (beaconManagerSubscription != null && !beaconManagerSubscription.isUnsubscribed()) {
                 subscriptions.remove(beaconManagerSubscription);
-                Log.wtf("Restart", "Restart beacon manager");
             }
             beaconManagerSubscription = beaconManager.observeNearestBeacons(beacons)
                     .subscribeOn(Schedulers.newThread())

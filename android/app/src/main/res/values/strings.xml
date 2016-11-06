@@ -30,6 +30,8 @@
 
     <!-- Profile -->
     <string name="profile_title">Profile</string>
+    <string name="profile_textview_discovery_mode">Discovery Mode</string>
+    <string name="profile_textview_discovery_mode_description">Enables beacons discovery and allow it to gives you dynamically information in real time</string>
 
     <!-- History -->
     <string name="history_title">History</string>
