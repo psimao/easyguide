@@ -15,6 +15,8 @@ import com.easyguide.BaseActivity;
 import com.easyguide.R;
 import com.easyguide.data.entity.Beacon;
 import com.easyguide.data.entity.BeaconContent;
+import com.easyguide.data.entity.User;
+import com.easyguide.util.Logger;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -25,8 +27,10 @@ import butterknife.ButterKnife;
 public class BeaconActivity extends BaseActivity {
 
     public static final String EXTRA_BEACON = "com.easyguide.presentation.beacon.BaseActivity.extraBeacon";
+    public static final String EXTRA_USER = "com.easyguide.presentation.beacon.BaseActivity.extraUser";
 
     private Beacon beacon;
+    private User user;
 
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -51,6 +55,7 @@ public class BeaconActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         beacon = (Beacon) getIntent().getSerializableExtra(EXTRA_BEACON);
+        user = (User) getIntent().getSerializableExtra(EXTRA_USER);
 
         if (Build.VERSION.SDK_INT > 19) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -92,5 +97,11 @@ public class BeaconActivity extends BaseActivity {
         collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(this, android.R.color.transparent));
         collapsingToolbarLayout.setStatusBarScrimColor(ContextCompat.getColor(this, android.R.color.transparent));
         supportStartPostponedEnterTransition();
+
+        Logger.createAndRegisterLog(
+                getString(R.string.log_beacon_detail_title).replace("{beacon}", beaconContent.getTextDescription()),
+                beaconContent.getTextContent(),
+                user.getName()
+        );
     }
 }

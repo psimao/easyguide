@@ -38,4 +38,7 @@
 
     <!-- Beacon -->
     <string name="beacon_title">Beacon Detail</string>
+
+    <!-- Log -->
+    <string name="log_beacon_detail_title">Visited {beacon}</string>
 </resources>

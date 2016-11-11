@@ -23,12 +23,16 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.easyguide.BaseFragment;
-import com.easyguide.Injection;
+import com.easyguide.data.entity.mapper.UserMapper;
+import com.easyguide.injection.BeaconInjection;
+import com.easyguide.injection.RepositoryInjection;
 import com.easyguide.R;
 import com.easyguide.data.entity.Beacon;
+import com.easyguide.injection.SchedulerProviderInjection;
 import com.easyguide.presentation.beacon.BeaconActivity;
 import com.easyguide.presentation.login.LoginActivity;
 import com.easyguide.ui.adapter.BeaconsAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -70,10 +74,10 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
         setHasOptionsMenu(true);
         new MainPresenter(
                 this,
-                Injection.provideUserRepository(getActivity().getApplicationContext()),
-                Injection.provideBeaconRepository(),
-                Injection.provideProximityBeaconManager(getContext()),
-                Injection.provideSchedulerProvider()
+                RepositoryInjection.provideUserRepository(getActivity().getApplicationContext()),
+                RepositoryInjection.provideBeaconRepository(),
+                BeaconInjection.provideProximityBeaconManager(getContext()),
+                SchedulerProviderInjection.provideSchedulerProvider()
         );
         return view;
     }
@@ -248,6 +252,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
     public void OnIemClick(int position, Beacon beacon) {
         Intent intent = new Intent(getContext(), BeaconActivity.class);
         intent.putExtra(BeaconActivity.EXTRA_BEACON, beacon);
+        intent.putExtra(BeaconActivity.EXTRA_USER, UserMapper.transform(FirebaseAuth.getInstance().getCurrentUser())); // TODO: Find better way!
         startActivity(intent);
     }
 }

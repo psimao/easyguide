@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.easyguide.BaseActivity;
-import com.easyguide.Injection;
+import com.easyguide.injection.RepositoryInjection;
 import com.easyguide.R;
 import com.easyguide.presentation.login.LoginActivity;
 import com.easyguide.ui.adapter.IntroductionAdapter;
@@ -60,7 +60,7 @@ public class IntroductionActivity extends BaseActivity implements IntroductionCo
         ButterKnife.bind(this);
         setupViewPager();
 
-        new IntroductionPresenter(this, Injection.providePreferencesRepository(this), SchedulerProvider.getInstance());
+        new IntroductionPresenter(this, RepositoryInjection.providePreferencesRepository(this), SchedulerProvider.getInstance());
     }
 
     @Override
