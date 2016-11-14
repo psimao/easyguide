@@ -22,14 +22,13 @@ public class PreferencesRepository implements PreferencesDataSource {
         }
         return INSTANCE;
     }
-
     @Override
-    public Observable<Boolean> isFirstAccess() {
-        return preferencesLocalDataSource.isFirstAccess();
+    public Observable<Boolean> getPreference(@NonNull String preference, @NonNull Boolean defautValue) {
+        return preferencesLocalDataSource.getPreference(preference, defautValue);
     }
 
     @Override
-    public Observable<Void> setFirstAccess(Boolean firstAccess) {
-        return preferencesLocalDataSource.setFirstAccess(firstAccess);
+    public Observable<Void> setPreference(@NonNull String preference, @NonNull Boolean value) {
+        return preferencesLocalDataSource.setPreference(preference, value);
     }
 }

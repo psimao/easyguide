@@ -61,4 +61,18 @@ public class Beacon implements Serializable {
     public String toString() {
         return getUuid().toUpperCase() + ":" + getMajor() + ":" + getMinor();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Beacon)) {
+            return false;
+        }
+        Beacon beacon = (Beacon) obj;
+        return beacon.getUuid().equals(this.getUuid())
+                && beacon.getMajor().equals(this.getMajor())
+                && beacon.getMinor().equals(this.getMinor());
+    }
 }

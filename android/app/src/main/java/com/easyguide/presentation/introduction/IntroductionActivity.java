@@ -12,13 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.easyguide.BaseActivity;
-import com.easyguide.injection.RepositoryInjection;
 import com.easyguide.R;
+import com.easyguide.injection.RepositoryInjection;
 import com.easyguide.presentation.login.LoginActivity;
 import com.easyguide.ui.adapter.IntroductionAdapter;
 import com.easyguide.util.schedulers.SchedulerProvider;
 
 import butterknife.BindArray;
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -46,10 +47,18 @@ public class IntroductionActivity extends BaseActivity implements IntroductionCo
             R.drawable.ic_introduction_3
     };
 
+    @BindString(R.string.app_name_contdes)
+    String appNameContDes;
+
     @BindArray(R.array.introduction_titles)
     String[] titles;
     @BindArray(R.array.introduction_messages)
     String[] messages;
+
+    @BindArray(R.array.introduction_titles_contdes)
+    String[] titlesContDes;
+    @BindArray(R.array.introduction_messages_contdes)
+    String[] messagesConsDes;
 
     private int lastPage = 0;
 
@@ -59,13 +68,12 @@ public class IntroductionActivity extends BaseActivity implements IntroductionCo
         setContentView(R.layout.activity_introduction);
         ButterKnife.bind(this);
         setupViewPager();
-
         new IntroductionPresenter(this, RepositoryInjection.providePreferencesRepository(this), SchedulerProvider.getInstance());
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         presenter.subscribe();
     }
 
@@ -114,7 +122,9 @@ public class IntroductionActivity extends BaseActivity implements IntroductionCo
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
     @Override
-    public void onPageSelected(int position) {}
+    public void onPageSelected(int position) {
+        viewPagerIntro.getChildAt(position).announceForAccessibility(titlesContDes[position] + ". " + messagesConsDes[position]);
+    }
 
     @Override
     public void onPageScrollStateChanged(int state) {
@@ -144,7 +154,7 @@ public class IntroductionActivity extends BaseActivity implements IntroductionCo
     }
 
     private void setupViewPager() {
-        IntroductionAdapter adapter = new IntroductionAdapter(titles, messages, linearLayoutBottomPage);
+        IntroductionAdapter adapter = new IntroductionAdapter(titles, messages, titlesContDes, messagesConsDes, linearLayoutBottomPage);
         viewPagerIntro.setAdapter(adapter);
         viewPagerIntro.setPageMargin(0);
         viewPagerIntro.setOffscreenPageLimit(1);

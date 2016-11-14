@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Easy Guide</string>
+    <string name="app_name_contdes">Easy Guide</string>
 
     <!-- Default -->
     <string name="default_alert_neutral_button">OK</string>
@@ -8,6 +9,7 @@
     <string name="default_progress_message">Please, wait…</string>
 
     <!-- Login Activity -->
+    <string name="login_screen_title">Login Screen</string>
     <string name="login_textview_message">Login with your Google account to enjoy that\n<b>awesome</b> experience!</string>
     <string name="login_textview_message_contdes">Login with your Google account to enjoy that awesome experience!</string>
     <string name="login_button_login_google">Login with Google Account</string>
@@ -15,10 +17,13 @@
     <string name="login_progress_default_title">Google Account</string>
 
     <!-- Introduction Activity -->
+    <string name="introduction_screen_title">Introduction Screen</string>
     <string name="introduction_button_start_exploring">Start Exploring ></string>
     <string name="introduction_progress_default_title">Setting up your first access!</string>
 
     <!-- Home -->
+    <string name="home_screen_title">Home Screen</string>
+
     <!-- Main -->
     <string name="main_title">Home</string>
     <string name="main_menu_logout">Log Out</string>
@@ -27,10 +32,12 @@
     <string name="main_bluetooth_permission_error">Turn on Bluetooth to continue start exploring!</string>
     <string name="main_bluetooth_permission_error_action">Turn on</string>
     <string name="main_undefined_beacon">Undefined</string>
+    <string name="adapter_beacon_distance">Approximate distance of %s meters</string>
 
     <!-- Profile -->
     <string name="profile_title">Profile</string>
     <string name="profile_textview_discovery_mode">Discovery Mode</string>
+    <string name="profile_switch_discovery_mode_contdes">Discovery Mode switcher</string>
     <string name="profile_textview_discovery_mode_description">Enables beacons discovery and allow it to gives you dynamically information in real time</string>
 
     <!-- History -->
@@ -40,5 +47,5 @@
     <string name="beacon_title">Beacon Detail</string>
 
     <!-- Log -->
-    <string name="log_beacon_detail_title">Visited {beacon}</string>
+    <string name="log_beacon_detail_title">{beacon}</string>
 </resources>

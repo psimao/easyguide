@@ -26,16 +26,20 @@
         </activity>
         <activity
             android:name=".presentation.introduction.IntroductionActivity"
+            android:label="@string/introduction_screen_title"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.login.LoginActivity"
+            android:label="@string/login_screen_title"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.home.HomeActivity"
+            android:label="@string/home_screen_title"
             android:screenOrientation="portrait"/>
         <activity
-            android:parentActivityName=".presentation.home.HomeActivity"
             android:name=".presentation.beacon.BeaconActivity"
+            android:label="@string/beacon_title"
+            android:parentActivityName=".presentation.home.HomeActivity"
             android:screenOrientation="portrait"/>
     </application>
 

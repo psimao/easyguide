@@ -11,9 +11,8 @@
               android:paddingTop="@dimen/activity_vertical_margin"
               tools:context="com.easyguide.presentation.login.LoginActivity">
 
-
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageview_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_logo_margin_top"
@@ -21,6 +20,7 @@
         android:src="@drawable/logo_easy_guide"/>
 
     <TextView
+        android:id="@+id/textview_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_message_margin_top"

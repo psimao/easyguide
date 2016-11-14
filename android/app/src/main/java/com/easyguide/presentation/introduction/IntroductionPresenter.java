@@ -38,7 +38,7 @@ public class IntroductionPresenter implements IntroductionContract.Presenter {
     public void setupFirstAccess() {
         view.showDefaultProgress();
         Subscription subscription =
-                preferencesRepository.setFirstAccess(false)
+                preferencesRepository.setPreference(PreferencesDataSource.PREFERENCE_FIRST_ACCESS, false)
                 .observeOn(schedulerProvider.ui())
                 .subscribeOn(schedulerProvider.computation())
                 .subscribe(setupFirstAccessAction);

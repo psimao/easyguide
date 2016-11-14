@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.easyguide.BaseActivity;
-import com.easyguide.injection.RepositoryInjection;
 import com.easyguide.R;
+import com.easyguide.injection.RepositoryInjection;
 import com.easyguide.injection.SchedulerProviderInjection;
 import com.easyguide.presentation.home.HomeActivity;
 import com.easyguide.presentation.introduction.IntroductionActivity;

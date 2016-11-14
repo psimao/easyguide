@@ -14,8 +14,6 @@ public class PreferencesLocalDataSource implements PreferencesDataSource {
 
     private static final String SHAREDPREFERENCES_NAME_PREFERENCES = "sharedpreferences_preferences";
 
-    private static final String SHAREDPREFERENCES_VALUE_FIRST_ACCESS = "first_access";
-
     private final SharedPreferences sharedPreferences;
 
     public PreferencesLocalDataSource(Context context) {
@@ -23,23 +21,26 @@ public class PreferencesLocalDataSource implements PreferencesDataSource {
     }
 
     @Override
-    public Observable<Boolean> isFirstAccess() {
+    public Observable<Boolean> getPreference(@NonNull final String preference, @NonNull final Boolean defautValue) {
+        checkNotNull(preference);
+        checkNotNull(defautValue);
         return Observable.fromCallable(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return sharedPreferences.getBoolean(SHAREDPREFERENCES_VALUE_FIRST_ACCESS, true);
+                return sharedPreferences.getBoolean(preference, defautValue);
             }
         });
     }
 
     @Override
-    public Observable<Void> setFirstAccess(@NonNull final Boolean firstAccess) {
-        checkNotNull(firstAccess);
+    public Observable<Void> setPreference(@NonNull final String preference, @NonNull final Boolean value) {
+        checkNotNull(preference);
+        checkNotNull(value);
         return Observable.fromCallable(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(SHAREDPREFERENCES_VALUE_FIRST_ACCESS, firstAccess);
+                editor.putBoolean(preference, value);
                 editor.apply();
                 return null;
             }

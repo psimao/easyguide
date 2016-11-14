@@ -10,6 +10,7 @@ import java.util.List;
 
 import rx.Subscription;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -52,7 +53,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
         Subscription subscription =
                 logRepository.getLogs()
                         .observeOn(schedulerProvider.ui())
-                        .subscribeOn(schedulerProvider.computation())
+                        .subscribeOn(Schedulers.newThread())
                         .subscribe(onHistoryLoaded);
         subscriptions.add(subscription);
     }

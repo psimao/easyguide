@@ -3,12 +3,14 @@ package com.easyguide.presentation.login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.easyguide.BaseActivity;
-import com.easyguide.injection.RepositoryInjection;
 import com.easyguide.R;
 import com.easyguide.data.entity.User;
 import com.easyguide.data.entity.mapper.UserMapper;
+import com.easyguide.injection.RepositoryInjection;
 import com.easyguide.injection.SchedulerProviderInjection;
 import com.easyguide.presentation.home.HomeActivity;
 import com.easyguide.util.GoogleAuthenticationProvider;
@@ -16,6 +18,7 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,16 +33,22 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private ProgressDialog progressDialog;
 
+    @BindView(R.id.imageview_login)
+    ImageView imageViewLogin;
+
+    @BindView(R.id.textview_login)
+    TextView textViewLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
         new LoginPresenter(
                 this,
                 RepositoryInjection.provideUserRepository(getApplicationContext()),
                 SchedulerProviderInjection.provideSchedulerProvider()
         );
-        ButterKnife.bind(this);
     }
 
     @Override
@@ -71,7 +80,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void showDefaultProgress() {
         progressDialog = ProgressDialog.show(
                 this,
-                getString(R.string.login_progress_default_title),
+                null,
                 getString(R.string.default_progress_message),
                 true,
                 true,

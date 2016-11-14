@@ -1,7 +1,5 @@
 package com.easyguide.util.beacon;
 
-import android.content.Context;
-
 import com.easyguide.data.entity.Beacon;
 import com.easyguide.data.entity.mapper.BeaconMapper;
 import com.estimote.sdk.BeaconManager;
@@ -23,13 +21,25 @@ import rx.subscriptions.Subscriptions;
 
 public class ProximityBeaconManager {
 
+    private static final String REGION_ALL_BEACONS = "ALL_BEACONS";
+    private static final String REGION_FIREBASE_BEACONS = "FIREBASE_BEACONS";
+
     private HashMap<String, Beacon> observableBeacons = new HashMap<>();
     private HashMap<String, Beacon> nearBeacons = new HashMap<>();
 
     private BeaconManager beaconManager;
 
-    public ProximityBeaconManager(Context context) {
-        beaconManager = new BeaconManager(context);
+    private static ProximityBeaconManager proximityBeaconManager;
+
+    private ProximityBeaconManager(BeaconManager beaconManager) {
+        this.beaconManager = beaconManager;
+    }
+
+    public static ProximityBeaconManager getInstance(BeaconManager beaconManager) {
+        if (proximityBeaconManager == null) {
+            proximityBeaconManager = new ProximityBeaconManager(beaconManager);
+        }
+        return proximityBeaconManager;
     }
 
     public Observable<List<Beacon>> observeNearestBeacons(List<Beacon> observableBeacons) {
@@ -78,7 +88,7 @@ public class ProximityBeaconManager {
                         Beacon beacon = beaconEntry.getValue();
                         beaconManager.startRanging(
                                 new Region(
-                                        "Firebase Beacons",
+                                        REGION_FIREBASE_BEACONS,
                                         UUID.fromString(beacon.getUuid()),
                                         beacon.getMajor().intValue(),
                                         beacon.getMinor().intValue()
@@ -86,7 +96,7 @@ public class ProximityBeaconManager {
                         );
                     }
                 } else {
-                    beaconManager.startRanging(new Region("All Beacons", null, null, null));
+                    beaconManager.startRanging(new Region(REGION_ALL_BEACONS, null, null, null));
                 }
             }
         });
@@ -96,7 +106,8 @@ public class ProximityBeaconManager {
         return Subscriptions.create(new Action0() {
             @Override
             public void call() {
-                beaconManager.disconnect();
+                beaconManager.stopRanging(new Region(REGION_ALL_BEACONS, null, null, null));
+                beaconManager.stopRanging(new Region(REGION_FIREBASE_BEACONS, null, null, null));
             }
         });
     }
