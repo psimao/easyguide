@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.easyguide.BaseActivity;
-import com.easyguide.Injection;
 import com.easyguide.R;
+import com.easyguide.injection.RepositoryInjection;
+import com.easyguide.injection.SchedulerProviderInjection;
 import com.easyguide.presentation.home.HomeActivity;
 import com.easyguide.presentation.introduction.IntroductionActivity;
 import com.easyguide.presentation.login.LoginActivity;
@@ -25,9 +26,9 @@ public class LaunchActivity extends BaseActivity implements LaunchContract.View 
         setContentView(R.layout.activity_launch);
         new LaunchPresenter(
                 this,
-                Injection.providePreferencesRepository(this),
-                Injection.provideUserRepository(getApplicationContext()),
-                Injection.provideSchedulerProvider()
+                RepositoryInjection.providePreferencesRepository(this),
+                RepositoryInjection.provideUserRepository(getApplicationContext()),
+                SchedulerProviderInjection.provideSchedulerProvider()
         );
     }
 

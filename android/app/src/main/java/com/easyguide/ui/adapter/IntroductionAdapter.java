@@ -21,11 +21,18 @@ public class IntroductionAdapter extends PagerAdapter {
     private final String[] titles;
     private final String[] messages;
 
-    public IntroductionAdapter(@NonNull String[] titles, @NonNull String[] messages, ViewGroup bottomPager) {
+    private final String[] titlesContDes;
+    private final String[] messagesContDes;
+
+    public IntroductionAdapter(@NonNull String[] titles, @NonNull String[] messages, @NonNull String[] titlesContDes, @NonNull String[] messagesContDes, ViewGroup bottomPager) {
         checkNotNull(titles);
         checkNotNull(messages);
+        checkNotNull(titlesContDes);
+        checkNotNull(messagesContDes);
         this.titles = titles;
         this.messages = messages;
+        this.titlesContDes = titlesContDes;
+        this.messagesContDes = messagesContDes;
         this.bottomPager = bottomPager;
     }
 
@@ -46,8 +53,9 @@ public class IntroductionAdapter extends PagerAdapter {
         } else {
             textViewMessage.setText(fromHtml(messages[position]));
         }
+        textViewMessage.setContentDescription(messagesContDes[position]);
         textViewTitle.setText(titles[position]);
-
+        textViewTitle.setContentDescription(titlesContDes[position]);
         return view;
     }
 

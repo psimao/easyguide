@@ -43,7 +43,7 @@ public class LaunchPresenter implements LaunchContract.Presenter {
 
     @Override
     public void subscribe() {
-        Subscription preferencesSubscription = preferencesRepository.isFirstAccess()
+        Subscription preferencesSubscription = preferencesRepository.getPreference(PreferencesDataSource.PREFERENCE_FIRST_ACCESS, true)
                 .subscribeOn(schedulerProvider.computation())
                 .observeOn(schedulerProvider.ui())
                 .subscribe(firstAccessCheckOnNextAction);

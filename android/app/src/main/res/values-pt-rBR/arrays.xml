@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="introduction_titles">
+        <item>Vamos explorar!</item>
+        <item>Mundo físico</item>
+        <item>Acessível</item>
+    </array>
+    <array name="introduction_messages">
+        <item><![CDATA[O meio mais <b>inteligente</b> de descobrir o que está <b>próximo ;)</b>]]></item>
+        <item><![CDATA[Descubra o que existe a sua volta com <b>beacons</b>!]]></item>
+        <item><![CDATA[Compatível com <b>Talkback</b>!<br>Design amigável para portadores de necessidades visuais.]]></item>
+    </array>
+    <array name="introduction_titles_contdes">
+        <item>Vamos explorar!</item>
+        <item>Mundo físico</item>
+        <item>Acessível</item>
+    </array>
+    <array name="introduction_messages_contdes">
+        <item>O meio mais inteligente de descobrir o que está próximo ;)</item>
+        <item>Descubra o que existe a sua volta com bícons!</item>
+        <item>Compatível com Tálquibec! Design amigável para portadores de necessidades visuais.</item>
+    </array>
+</resources>

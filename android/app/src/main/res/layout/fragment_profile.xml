@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
     android:orientation="vertical">
 
     <com.easyguide.ui.customview.CircularImageView
-        android:id="@+id/circularImageView"
+        android:id="@+id/civ_profile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginEnd="96dp"
@@ -16,7 +17,7 @@
         android:layout_marginStart="96dp"
         android:layout_marginTop="16dp"
         android:layout_weight="1"
-        android:src="@drawable/bg_beacon_256"
+        android:src="@drawable/ic_person_white_48dp"
         app:civ_border="false"
         app:civ_shadow="true"
         app:civ_shadow_color="#33000000"
@@ -35,7 +36,6 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
         <TextView
@@ -45,7 +45,6 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <View
@@ -84,6 +83,7 @@
                         android:id="@+id/switch_discovery_mode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/profile_switch_discovery_mode_contdes"
                         android:checked="true"/>
                 </LinearLayout>
 

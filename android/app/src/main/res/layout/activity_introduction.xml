@@ -78,6 +78,7 @@
             android:layout_marginTop="32dp"
             android:gravity="center"
             android:text="@string/introduction_button_start_exploring"
+            android:contentDescription="@string/introduction_button_start_exploring_contdes"
             android:textColor="@color/colorAccent"
             android:textSize="18sp"/>
 

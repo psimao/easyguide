@@ -6,8 +6,11 @@ import rx.Observable;
 
 public interface PreferencesDataSource {
 
-    Observable<Boolean> isFirstAccess();
+    String PREFERENCE_FIRST_ACCESS = "first_access";
+    String PREFERENCE_DISCOVERY_MODE = "discovery_mode";
 
-    Observable<Void> setFirstAccess(@NonNull Boolean firstAccess);
+    Observable<Boolean> getPreference(@NonNull String preference, @NonNull Boolean defautValue);
+
+    Observable<Void> setPreference(@NonNull String preference, @NonNull Boolean value);
 
 }

@@ -8,6 +8,16 @@
     <array name="introduction_messages">
         <item><![CDATA[The <b>smartest</b> way to see what\'s <b>near by ;)</b>]]></item>
         <item><![CDATA[Discovery what\'s around you by <b>beacons</b>!]]></item>
-        <item><![CDATA[Talkback compatible!<br>Friendly design for visually impaired.]]></item>
+        <item><![CDATA[<b>Talkback</b> compatible!<br>Friendly design for visually impaired.]]></item>
+    </array>
+    <array name="introduction_titles_contdes">
+        <item>Let\'s explore!</item>
+        <item>Physical World</item>
+        <item>Accessible</item>
+    </array>
+    <array name="introduction_messages_contdes">
+        <item>The smartest way to see what\'s near by ;)</item>
+        <item>Discovery what\'s around you by beacons!</item>
+        <item>Talkback compatible! Friendly design for visually impaired.</item>
     </array>
 </resources>

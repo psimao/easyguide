@@ -3,6 +3,7 @@ package com.easyguide.presentation.home.main;
 import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -23,13 +24,19 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.easyguide.BaseFragment;
-import com.easyguide.Injection;
 import com.easyguide.R;
 import com.easyguide.data.entity.Beacon;
+import com.easyguide.data.entity.BeaconContent;
+import com.easyguide.data.entity.mapper.UserMapper;
+import com.easyguide.injection.BeaconInjection;
+import com.easyguide.injection.RepositoryInjection;
+import com.easyguide.injection.SchedulerProviderInjection;
 import com.easyguide.presentation.beacon.BeaconActivity;
 import com.easyguide.presentation.login.LoginActivity;
 import com.easyguide.ui.adapter.BeaconsAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -55,6 +62,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
     private MainContract.Presenter presenter;
 
     private BeaconsAdapter beaconsAdapter;
+    private Beacon previousNearestBeacon;
 
     @Override
     protected int fragmentTitleResourceId() {
@@ -68,12 +76,13 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
         ButterKnife.bind(this, view);
         setupRecyclerView();
         setHasOptionsMenu(true);
+        Context applicationContext = getActivity().getApplicationContext();
         new MainPresenter(
                 this,
-                Injection.provideUserRepository(getActivity().getApplicationContext()),
-                Injection.provideBeaconRepository(),
-                Injection.provideProximityBeaconManager(getContext()),
-                Injection.provideSchedulerProvider()
+                RepositoryInjection.provideUserRepository(applicationContext),
+                RepositoryInjection.provideBeaconRepository(),
+                BeaconInjection.provideProximityBeaconManager(BeaconInjection.provideBeaconManager(applicationContext)),
+                SchedulerProviderInjection.provideSchedulerProvider()
         );
         return view;
     }
@@ -173,13 +182,29 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
 
     @Override
     public void setBeacon(List<Beacon> beaconsList) {
+        final Beacon currentNearestBeacon = beaconsList.isEmpty() ? null : beaconsList.get(0);
         if (beaconsAdapter == null) {
             beaconsAdapter = new BeaconsAdapter(getContext(), beaconsList);
             beaconsAdapter.setOnItemClickListener(this);
             recyclerViewBeacons.setAdapter(beaconsAdapter);
+            previousNearestBeacon = currentNearestBeacon;
         } else {
             beaconsAdapter.setSourceList(beaconsList);
             beaconsAdapter.notifyDataSetChanged();
+        }
+        if (currentNearestBeacon != null && !currentNearestBeacon.equals(previousNearestBeacon)) {
+            previousNearestBeacon = currentNearestBeacon;
+            recyclerViewBeacons.post(new Runnable() {
+                @Override
+                public void run() {
+                    HashMap<String, BeaconContent> contents = currentNearestBeacon.getContent();
+                    if (contents != null) {
+                        String key = contents.entrySet().iterator().next().getKey();
+                        BeaconContent beaconContent = contents.get(key);
+                        recyclerViewBeacons.getChildAt(0).announceForAccessibility(beaconContent.getSpeechDescription());
+                    }
+                }
+            });
         }
     }
 
@@ -248,6 +273,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
     public void OnIemClick(int position, Beacon beacon) {
         Intent intent = new Intent(getContext(), BeaconActivity.class);
         intent.putExtra(BeaconActivity.EXTRA_BEACON, beacon);
+        intent.putExtra(BeaconActivity.EXTRA_USER, UserMapper.transform(FirebaseAuth.getInstance().getCurrentUser())); // TODO: Find better way!
         startActivity(intent);
     }
 }

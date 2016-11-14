@@ -1,6 +1,7 @@
 package com.easyguide.ui.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,10 +56,12 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
             String key = contents.entrySet().iterator().next().getKey();
             beaconContent = contents.get(key);
         }
+        String cardContentDescription = "";
         String distanceText = "~" + beacon.getDistance() + "m";
         holder.textViewDistance.setText(distanceText);
         if (beaconContent != null) {
             holder.textViewDescription.setText(beaconContent.getTextDescription());
+            cardContentDescription += beaconContent.getSpeechDescription();
             Picasso.with(context)
                     .load(beaconContent.getImageUrl())
                     .placeholder(R.drawable.bg_beacon_256)
@@ -66,10 +69,14 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
                     .into(holder.imageViewBeacon);
         } else {
             holder.textViewDescription.setText(context.getText(R.string.main_undefined_beacon));
+            cardContentDescription += context.getText(R.string.main_undefined_beacon);
             Picasso.with(context)
                     .load(R.drawable.bg_beacon_256)
                     .into(holder.imageViewBeacon);
         }
+        cardContentDescription += ". " + String.format(context.getString(R.string.adapter_beacon_distance), String.valueOf(beacon.getDistance()));
+
+        holder.cardViewBeacon.setContentDescription(cardContentDescription);
     }
 
     @Override
@@ -79,6 +86,8 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.cardview_beacon)
+        CardView cardViewBeacon;
         @BindView(R.id.imageview_beacon)
         ImageView imageViewBeacon;
         @BindView(R.id.textview_distance)
@@ -93,7 +102,7 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
 
         @OnClick(R.id.cardview_beacon)
         void cardViewOnClick() {
-            if(onItemClickListener != null) {
+            if (onItemClickListener != null) {
                 onItemClickListener.OnIemClick(getAdapterPosition(), sourceList.get(getAdapterPosition()));
             }
         }

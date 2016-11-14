@@ -1,7 +1,6 @@
 package com.easyguide.data.repository.beacon;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.easyguide.data.entity.Beacon;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +17,8 @@ import rx.Subscriber;
 import rx.functions.Action0;
 import rx.subscriptions.Subscriptions;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class BeaconRemoteDataSource implements BeaconDataSource {
 
     private final FirebaseDatabase firebaseDatabase;
@@ -25,6 +26,7 @@ public class BeaconRemoteDataSource implements BeaconDataSource {
     private static final String FIREBASE_REFERENCE_BEACONS = "beacon";
 
     public BeaconRemoteDataSource(@NonNull FirebaseDatabase firebaseDatabase) {
+        checkNotNull(firebaseDatabase);
         this.firebaseDatabase = firebaseDatabase;
     }
 
@@ -43,7 +45,6 @@ public class BeaconRemoteDataSource implements BeaconDataSource {
                             Beacon beacon = item.getValue(Beacon.class);
                             beacons.add(beacon);
                         }
-                        Log.d("FB next", beacons.toString());
                         subscriber.onNext(beacons);
                     }
 
