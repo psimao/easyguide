@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+        <meta name="author" content="GeeksLabs">
+        <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+        <link rel="shortcut icon" href="img/favicon.png">
+
+        <title>Easy Guide</title>
+        <!--external css-->
+        <!-- font icon -->
+        <link href="css/elegant-icons-style.css" rel="stylesheet" />
+        <link href="css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom styles -->
+        <link href="css/module/login.css" rel="stylesheet" type="text/css"/>
+        <link rel="manifest" href="assets/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
+        <link rel="shortcut icon" type="image/png" href="assets/favicons/favicon.ico"/>
+        <meta name="theme-color" content="#ffffff">
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">        
+        <link href="css/module/comom.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+        <script src="js/auth/firebase.config.js"></script>
+        <script src="js/auth/auth.js"></script>
+        <script src="js/model/adminModel.js"></script>
+        <script src="js/model/logModel.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                localStorage.removeItem('user');
+            });
+        </script>
+    </head>
+    <body>
+
+        <div>
+            <section class="login" id="login">
+                <header>
+                    <h1><center>Easy Guide</center></h1>
+                </header>
+                <form class="login-form" onsubmit="auth.firebaseAuthByUserAndPass(); return false;">
+                    <input id="username" type="text" class="login-input" placeholder="User" required autofocus/>
+                    <input id="password" type="password" class="login-input" placeholder="Password" required/>
+                    <div class="submit-container">
+                        <button type="submit" class="login-button">SIGN IN</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <!-- TODOs
+        Implement this library.
+        https://github.com/lmgonzalves/loading-buttons
+        -->
+    </body>
+</html>
