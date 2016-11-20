@@ -34,7 +34,8 @@
     <string name="main_bluetooth_permission_error_action">Ativar</string>
     <string name="main_undefined_beacon">Indefinido</string>
     <string name="adapter_beacon_distance_1">Distância aproximada de %s metros</string>
-
+    <string name="main_location_permission_request">É necessário ativar a Localização do aparelho para descoberta dos beacons.</string>
+    <string name="main_location_permission_request_open_settings">Abrir configurações</string>
 
     <!-- Profile -->
     <string name="profile_title">Perfil</string>
