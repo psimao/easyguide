@@ -161,42 +161,42 @@
                                     <thead>
                                         <tr>
                                             <th class="col-md-2">
-                                                <center>Location</center>
-                                            </th>
-                                            <th class="col-md-1">
-                                                <center>UUID</center>
-                                            </th>
-                                            <th class="col-md-3">
-                                                <center>Major Value</center>
-                                            </th>
-                                            <th class="col-md-3">
-                                                <center>Minor Value</center>
-                                            </th>
-                                            <th class="col-md-2">
-                                                <center>Date created</center>
-                                            </th>
-                                            <th class="col-md-1">
-                                                <center>Action</center>
-                                            </th>
-                                        </tr>
+                                    <center>Location</center>
+                                    </th>
+                                    <th class="col-md-1">
+                                    <center>UUID</center>
+                                    </th>
+                                    <th class="col-md-3">
+                                    <center>Major Value</center>
+                                    </th>
+                                    <th class="col-md-3">
+                                    <center>Minor Value</center>
+                                    </th>
+                                    <th class="col-md-2">
+                                    <center>Date created</center>
+                                    </th>
+                                    <th class="col-md-1">
+                                    <center>Action</center>
+                                    </th>
+                                    </tr>
                                     </thead>
 
                                     <tbody>
                                         <tr ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" grid-item ng-repeat="beacon in beacons| filter:search">
                                             <td class="col-md-2"><center>{{beacon.location}}</center></td>
-                                            <td class="col-md-1"><center>{{beacon.uuid | limitTo: 20 }}{{beacon.uuid.length > 20 ? '...' : ''}}</center></td> 
+                                            <td class="col-md-1"><center>{{beacon.uuid| limitTo: 20 }}{{beacon.uuid.length > 20 ? '...' : ''}}</center></td> 
                                             <td class="col-md-3"><center>{{beacon.major_value}}</center></td>
                                             <td class="col-md-3"><center>{{beacon.minor_value}}</center></td>
                                             <td class="col-md-2"><center>{{beacon.dt_created| date}}</center></td>
                                             <td class="col-md-1">
-                                                <center>
-                                                    <md-button class="md-fab md-mini md-primary">
-                                                        <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadBeaconOnForm(beacon);"></md-icon>
-                                                    </md-button>
-                                                    <md-button class="md-fab md-mini md-warn">
-                                                        <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="del(beacon);"></md-icon>
-                                                    </md-button>
-                                                </center>
+                                            <center>
+                                                <md-button class="md-fab md-mini md-primary">
+                                                    <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadBeaconOnForm(beacon);"></md-icon>
+                                                </md-button>
+                                                <md-button class="md-fab md-mini md-warn">
+                                                    <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="del(beacon);"></md-icon>
+                                                </md-button>
+                                            </center>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -250,23 +250,23 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="col-md-2"><center>Profile</center></th>
-                                                        <th class="col-md-2"><center>Content</center></th>
-                                                        <th class="col-md-2"><center>Action</center></th>
-                                                    </tr>
+                                                <th class="col-md-2"><center>Content</center></th>
+                                                <th class="col-md-2"><center>Action</center></th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr grid-item ng-repeat="content in form.beacon.content">
                                                         <td class="col-md-2"><center>{{content.profile}}</center></td>        
-                                                        <td class="col-md-2"><center>{{content.speech_content | limitTo: 25 }}{{content.speech_content.length > 25 ? '...' : ''}}</center></td> 
+                                                        <td class="col-md-2"><center>{{content.speech_content| limitTo: 25 }}{{content.speech_content.length > 25 ? '...' : ''}}</center></td> 
                                                         <td class="col-md-2">
-                                                            <center>
-                                                                <md-button class="md-fab md-mini md-primary">
-                                                                    <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadContentOnForm(content);"></md-icon>
-                                                                </md-button>
-                                                                <md-button class="md-fab md-mini md-warn">
-                                                                    <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delContent(form.beacon.key, content);"></md-icon>
-                                                                </md-button>
-                                                            </center>
+                                                        <center>
+                                                            <md-button class="md-fab md-mini md-primary">
+                                                                <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadContentOnForm(content);"></md-icon>
+                                                            </md-button>
+                                                            <md-button class="md-fab md-mini md-warn">
+                                                                <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delContent(form.beacon.key, content);"></md-icon>
+                                                            </md-button>
+                                                        </center>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -285,7 +285,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_record_voice_over_white_24px.svg" class="voice"></md-icon>
+                                                    <md-icon md-svg-src="img/icons/android.svg"></md-icon>
                                                     <input ng-model="form.content.speech_content" type="text" placeholder="Speech cont." ng-required="true">
                                                 </md-input-container>
                                             </div>
@@ -316,7 +316,7 @@
                                                     <div class="file_input">
                                                         <label class="mdl-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
                                                             <i ng-click="addChangeListener();" class="material-icons">file_upload</i>
-                                                            <input type="file" id="file" accept="image/*"/>
+                                                            <input class="ng-hide" type="file" id="file" accept="image/*"/>
                                                         </label>
                                                     </div>
                                                     <div id="file_input_text_div" class="mdl-textfield col-md-10">
