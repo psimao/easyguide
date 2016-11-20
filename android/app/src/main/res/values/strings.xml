@@ -33,6 +33,8 @@
     <string name="main_bluetooth_permission_error_action">Turn on</string>
     <string name="main_undefined_beacon">Undefined</string>
     <string name="adapter_beacon_distance">Approximate distance of %s meters</string>
+    <string name="main_location_permission_request">It\'s necessary to turn on device\'s location service for beacons discovery.</string>
+    <string name="main_location_permission_request_open_settings">Open Settings</string>
 
     <!-- Profile -->
     <string name="profile_title">Profile</string>

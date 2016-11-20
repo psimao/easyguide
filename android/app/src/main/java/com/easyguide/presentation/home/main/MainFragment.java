@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -90,15 +91,9 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
     @Override
     public void onStart() {
         super.onStart();
-        if (!checkPermissions()) {
-            requestPermissions();
-            return;
+        if(checkAllPermissions()) {
+            presenter.subscribe();
         }
-        if (!isBluetoothEnabled()) {
-            requestBluetoothActivation();
-            return;
-        }
-        presenter.subscribe();
 
     }
 
@@ -139,11 +134,9 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
                         .show();
                 return;
             }
-            if (!isBluetoothEnabled()) {
-                requestBluetoothActivation();
-                return;
+            if(checkAllPermissions()) {
+                presenter.subscribe();
             }
-            presenter.subscribe();
         }
     }
 
@@ -153,7 +146,9 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
         switch (requestCode) {
             case RESULT_REQUEST_BLUETOOTH_ACTIVATION:
                 if (resultCode == Activity.RESULT_OK) {
-                    presenter.subscribe();
+                    if(checkAllPermissions()) {
+                        presenter.subscribe();
+                    }
                 } else {
                     Snackbar.make(frameLayoutMain, R.string.main_bluetooth_permission_error, Snackbar.LENGTH_INDEFINITE)
                             .setAction(R.string.main_bluetooth_permission_error_action, new View.OnClickListener() {
@@ -235,6 +230,22 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
         recyclerViewBeacons.setLayoutManager(layoutManager);
     }
 
+    private boolean checkAllPermissions() {
+        if (!checkPermissions()) {
+            requestPermissions();
+            return false;
+        }
+        if (!isBluetoothEnabled()) {
+            requestBluetoothActivation();
+            return false;
+        }
+        if (!isLocationEnabled()) {
+            requestLocationActivation();
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Checks screen required permissions.
      */
@@ -267,6 +278,29 @@ public class MainFragment extends BaseFragment implements MainContract.View, Bea
     private void requestBluetoothActivation() {
         Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
         startActivityForResult(intent, RESULT_REQUEST_BLUETOOTH_ACTIVATION);
+    }
+
+    /**
+     * Checks Location (by GPS or Network) status.
+     */
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    /**
+     * Shows location request message and open settings activity on action button click.
+     */
+    private void requestLocationActivation() {
+        Snackbar.make(frameLayoutMain, R.string.main_location_permission_request, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.main_location_permission_request_open_settings, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(intent);
+                    }
+                })
+                .show();
     }
 
     @Override

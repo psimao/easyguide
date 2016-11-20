@@ -31,12 +31,12 @@ ext {
     buildToolsVersion = '23.0.2'
 
     // App dependencies
-    supportLibraryVersion = '25.0.0'
+    supportLibraryVersion = '25.0.1'
     guavaVersion = '18.0'
     rxjavaVersion = '1.1.8'
     rxandroidVersion = '1.2.1'
-    firebaseVersion = '9.6.1'
-    googleGsmVersion = '9.6.1'
+    firebaseVersion = '9.8.0'
+    googleGsmVersion = '9.8.0'
     butterknifeVersion = '8.4.0'
     picassoVersion = '2.5.2'
     estimoteVersion = '0.13.0'
