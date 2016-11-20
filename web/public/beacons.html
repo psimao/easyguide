@@ -25,7 +25,6 @@
         <script type="text/javascript" src="js/components/jquery-ui-1.9.2.custom.min.js"></script>        
         <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
         <script src="node_modules/toastr/toastr.js" type="text/javascript"></script>
-        <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
         <script src="node_modules/angular-animate/angular-animate.min.js" type="text/javascript"></script>
         <script src="node_modules/angular-aria/angular-aria.min.js" type="text/javascript"></script>
         <script src="node_modules/angular-messages/angular-messages.min.js" type="text/javascript"></script>
@@ -155,6 +154,61 @@
                         </div>
                     </div>
                     <div ng-controller="beaconCtrl" id="beaconCtrl">
+                        <div class="col-md-8">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Buscar</label>
+                                    <input ng-model="search">
+                                </md-input-container>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-2">
+                                                <center>Location</center>
+                                            </th>
+                                            <th class="col-md-1">
+                                                <center>UUID</center>
+                                            </th>
+                                            <th class="col-md-3">
+                                                <center>Major Value</center>
+                                            </th>
+                                            <th class="col-md-3">
+                                                <center>Minor Value</center>
+                                            </th>
+                                            <th class="col-md-2">
+                                                <center>Date created</center>
+                                            </th>
+                                            <th class="col-md-1">
+                                                <center>Action</center>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" grid-item ng-repeat="beacon in beacons| filter:search">
+                                            <td class="col-md-2"><center>{{beacon.location}}</center></td>
+                                            <td class="col-md-1"><center>{{beacon.uuid | limitTo: 20 }}{{beacon.uuid.length > 20 ? '...' : ''}}</center></td> 
+                                            <td class="col-md-3"><center>{{beacon.major_value}}</center></td>
+                                            <td class="col-md-3"><center>{{beacon.minor_value}}</center></td>
+                                            <td class="col-md-2"><center>{{beacon.dt_created| date}}</center></td>
+                                            <td class="col-md-1">
+                                                <center>
+                                                    <md-button class="md-fab md-mini md-primary">
+                                                        <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadBeaconOnForm(beacon);"></md-icon>
+                                                    </md-button>
+                                                    <md-button class="md-fab md-mini md-warn">
+                                                        <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="del(beacon);"></md-icon>
+                                                    </md-button>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
                         <div class="col-md-4 table-responsive">
                             <div class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12" layout="column" layout-padding ng-cloak>
                                 <div id="mainData">
@@ -177,13 +231,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <md-input-container class="md-block">
-                                                <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                <md-icon md-svg-src="img/icons/ic_location_on_black_24px.svg"></md-icon>
                                                 <input ng-model="form.beacon.major_value" type="number" placeholder="Major Value" ng-required="true">
                                             </md-input-container>
                                         </div>
                                         <div class="col-md-6">
                                             <md-input-container class="md-block">
-                                                <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                <md-icon md-svg-src="img/icons/ic_location_on_black_24px.svg"></md-icon>
                                                 <input ng-model="form.beacon.minor_value" type="number" placeholder="Minor Value" ng-required="true">
                                             </md-input-container>
                                         </div>
@@ -200,24 +254,24 @@
                                             <table class="table mdl-data-table mdl-js-data-table col-md-12">
                                                 <thead>
                                                     <tr>
-                                                        <th class="col-md-2">Profile</th>
-                                                        <th class="col-md-2">Content</th>
-                                                        <th class="col-md-2">Action</th>
+                                                        <th class="col-md-2"><center>Profile</center></th>
+                                                        <th class="col-md-2"><center>Content</center></th>
+                                                        <th class="col-md-2"><center>Action</center></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr grid-item ng-repeat="content in form.beacon.content">
-                                                        <td class="col-md-2">{{content.profile}}</td>        
-                                                        <td class="col-md-2">{{content.text_content}}</td> 
+                                                        <td class="col-md-2"><center>{{content.profile}}</center></td>        
+                                                        <td class="col-md-2"><center>{{content.speech_content | limitTo: 25 }}{{content.speech_content.length > 25 ? '...' : ''}}</center></td> 
                                                         <td class="col-md-2">
-                                                            <span>
+                                                            <center>
                                                                 <md-button class="md-fab md-mini md-primary">
                                                                     <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadContentOnForm(content);"></md-icon>
                                                                 </md-button>
                                                                 <md-button class="md-fab md-mini md-warn">
                                                                     <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="delContent(form.beacon.key, content);"></md-icon>
                                                                 </md-button>
-                                                            </span>
+                                                            </center>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -228,7 +282,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
                                                     <input ng-model="form.content.profile" type="number" placeholder="Profile" ng-required="true">
                                                 </md-input-container>
                                             </div>
@@ -236,13 +290,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <md-icon md-svg-src="img/icons/ic_record_voice_over_white_24px.svg" class="voice"></md-icon>
                                                     <input ng-model="form.content.speech_content" type="text" placeholder="Speech cont." ng-required="true">
                                                 </md-input-container>
                                             </div>
                                             <div class="col-md-6">
                                                 <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <md-icon md-svg-src="img/icons/ic_record_voice_over_white_24px.svg"></md-icon>
                                                     <input ng-model="form.content.speech_description" type="text" placeholder="Speech desc." ng-required="true">
                                                 </md-input-container>
                                             </div>
@@ -250,13 +304,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <md-icon md-svg-src="img/icons/ic_text_format_white_24px.svg"></md-icon>
                                                     <input ng-model="form.content.text_content" type="text" placeholder="Text cont." ng-required="true">
                                                 </md-input-container>
                                             </div>
                                             <div class="col-md-6">
                                                 <md-input-container class="md-block">
-                                                    <md-icon md-svg-src="img/icons/ic_email_24px.svg"></md-icon>
+                                                    <md-icon md-svg-src="img/icons/ic_text_format_white_24px.svg"></md-icon>
                                                     <input ng-model="form.content.text_description" type="text" placeholder="Text desc." ng-required="true">
                                                 </md-input-container>
                                             </div>
@@ -292,55 +346,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="table-responsive">
-                                <table class="table mdl-data-table mdl-js-data-table mdl-shadow--4dp col-md-12">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-md-2">
-                                                <span>Location</span>
-                                            </th>
-                                            <th class="col-md-1">
-                                                <span>UUID</span>
-                                            </th>
-                                            <th class="col-md-3">
-                                                <span>Major Value</span>
-                                            </th>
-                                            <th class="col-md-3">
-                                                <span>Minor Value</span>
-                                            </th>
-                                            <th class="col-md-2">
-                                                <span>Date created</span>
-                                            </th>
-                                            <th class="col-md-1">
-                                                <span>Action</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
 
-                                    <tbody>
-                                        <tr ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" grid-item ng-repeat="beacon in beacons">
-                                            <td class="col-md-2">{{beacon.location}}</td>
-                                            <td class="col-md-1">{{beacon.uuid}}</td> 
-                                            <td class="col-md-3">{{beacon.major_value}}</td>
-                                            <td class="col-md-3">{{beacon.minor_value}}</td>
-                                            <td class="col-md-2">{{beacon.dt_created| date:'MM/dd/yyyy HH:mm:ss'}}</td>
-                                            <td class="col-md-1">
-                                                <span>
-                                                    <md-button class="md-fab md-mini md-primary">
-                                                        <md-icon md-svg-src="img/icons/ic_build_24px.svg" ng-click="loadBeaconOnForm(beacon);"></md-icon>
-                                                    </md-button>
-                                                    <md-button class="md-fab md-mini md-warn">
-                                                        <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" ng-click="del(beacon);"></md-icon>
-                                                    </md-button>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
                     </div>
                 </section>
             </section>
