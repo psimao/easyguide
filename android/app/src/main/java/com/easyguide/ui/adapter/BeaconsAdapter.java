@@ -14,6 +14,7 @@ import com.easyguide.data.entity.Beacon;
 import com.easyguide.data.entity.BeaconContent;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -52,9 +53,16 @@ public class BeaconsAdapter extends RecyclerView.Adapter<BeaconsAdapter.ViewHold
         Beacon beacon = sourceList.get(position);
         HashMap<String, BeaconContent> contents = beacon.getContent();
         BeaconContent beaconContent = null;
-        if (contents != null) {
-            String key = contents.entrySet().iterator().next().getKey();
-            beaconContent = contents.get(key);
+        if (contents != null && contents.size() > 0) {
+            ArrayList<BeaconContent> beaconContents = new ArrayList<>(contents.values());
+            for (BeaconContent item : beaconContents) {
+                if (item.getProfile() == 1L) {
+                    beaconContent = item;
+                }
+            }
+            if (beaconContent == null) {
+                beaconContent = beaconContents.get(0);
+            }
         }
         String cardContentDescription = "";
         String distanceText = "~" + beacon.getDistance() + "m";
