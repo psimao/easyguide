@@ -19,6 +19,7 @@
     <!-- Introduction Activity -->
     <string name="introduction_screen_title">Introduction Screen</string>
     <string name="introduction_button_start_exploring">Start Exploring ></string>
+    <string name="introduction_button_start_exploring_contdes">Start Exploring!</string>
     <string name="introduction_progress_default_title">Setting up your first access!</string>
 
     <!-- Home -->
