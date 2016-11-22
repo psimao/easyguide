@@ -1,42 +1,3 @@
-/* global beaconModel, toastr, firebase */
-
-window.onload = function () {
-    var db = firebase.database().ref('beacon');
-    var scope = angular.element(document.getElementById("beaconCtrl")).scope();
-
-    db.on('child_added', function (snapshot) {
-        if (!scope.$$phase) {
-            scope.$apply(function () {
-                scope.arrayPush(validate.filterObject(snapshot));
-            });
-        } else {
-            scope.arrayPush(validate.filterObject(snapshot));
-        }
-    });
-
-    db.on('child_removed', function (snapshot) {
-        if (!scope.$$phase) {
-            scope.$apply(function () {
-                scope.arraySplice(validate.filterObject(snapshot));
-            });
-        } else {
-            scope.arraySplice(validate.filterObject(snapshot));
-        }
-
-    });
-
-    db.on('child_changed', function (snapshot) {
-        if (!scope.$$phase) {
-            scope.$apply(function () {
-                scope.arrayChange(validate.filterObject(snapshot));
-            });
-        } else {
-            scope.arrayChange(validate.filterObject(snapshot));
-        }
-
-    });
-};
-
 function handleFileSelect(evt) {
     evt.stopPropagation();
     evt.preventDefault();
@@ -67,43 +28,15 @@ function handleFileSelect(evt) {
  * @param {type} param2
  */
 angular
-        .module('EasyGuide', ['ngAnimate', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
-        .controller('beaconCtrl', function ($scope) {
-
+        .module('EasyGuide', ['firebase', 'ngAnimate', 'ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+        .controller('beaconCtrl', function ($scope, $firebaseArray) {
+            var ref = firebase.database().ref().child("beacon");
             $scope.form = Array();
-            $scope.beacons = Array();
-
-            $scope.arrayPush = function (object) {
-                $scope.beacons.push(object);
-            };
-
-            $scope.arrayChange = function (object) {
-                $.each($scope.beacons, function () {
-                    if (this.key == object.key) {
-                        this.uuid = object.uuid;
-                        this.location = object.location;
-                        this.major_value = object.major_value;
-                        this.minor_value = object.minor_value;
-                        this.action = object.action;
-                        if ($scope.form.beacon.key = this.key) {
-                            $scope.form.beacon = angular.copy(object);
-                        }
-                    }
-                });
-            };
-
-            $scope.arraySplice = function (object) {
-                $.each($scope.beacons, function (i) {
-                    if ($scope.beacons[i].key == object.key) {
-                        $scope.beacons.splice(i, 1);
-                        return false;
-                    }
-                });
-            };
+            $scope.beacons = $firebaseArray(ref);
 
             $scope.set = function (object) {
                 if (validate.validateMainForm(object)) {
-                    if (object.key != null) {
+                    if (object.$id != null) {
                         beaconModel.updBeacon(object);
                     } else {
                         beaconModel.setBeacon(object);
@@ -118,7 +51,7 @@ angular
 
             $scope.setContent = function (beaconKey, content) {
                 if (validate.validateContentForm(content)) {
-                    if (content.key != null) {
+                    if (content.$id != null) {
                         beaconModel.updContent(beaconKey, content);
                     } else {
                         beaconModel.setContent(beaconKey, content);
@@ -140,7 +73,8 @@ angular
 
             $scope.loadBeaconOnForm = function (beacon) {
                 $scope.form.beacon = angular.copy(beacon);
-                $scope.form.content = angular.copy(beacon.content);
+                $scope.contents = $firebaseArray(ref.child(beacon.$id + "/content"));
+                $scope.addChangeListener();
             };
 
             $scope.loadContentOnForm = function (content) {
@@ -162,6 +96,10 @@ angular
                     $("file").unbind("change");
                     file.addEventListener('change', handleFileSelect, false);
                 }
+            };
+
+            $scope.reloadBeaconForm = function () {
+
             };
         });
 
@@ -237,15 +175,6 @@ var validate = new function () {
 
 
         return stat;
-    };
-
-    this.filterObject = function (snapshot) {
-        var beacon = snapshot.val();
-        beacon.key = snapshot.key;
-        for (var key in beacon.content) {
-            beacon.content[key].key = key;
-        }
-        return beacon;
     };
 };
 
