@@ -69,7 +69,7 @@ function handleFileSelect(evt) {
  * @param {type} param2
  */
 angular
-        .module('EasyGuide', ['angular-md5','ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+        .module('EasyGuide', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
         .controller('adminCtrl', function ($scope) {
             $scope.admins = Array();
 
